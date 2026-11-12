@@ -1,0 +1,26 @@
+
+<resources>
+
+    <string name="app_name">CSU Census</string>
+
+    <string name="login_title">Welcome Back</string>
+    <string name="login_subtitle">Sign in to continue your field work</string>
+
+    <string name="collector_id">Collector ID</string>
+    <string name="password">Password</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create New Account</string>
+    <string name="forgot_password">Forgot Password?</string>
+
+    <string name="dashboard_title">Dashboard</string>
+    <string name="households_title">Households</string>
+    <string name="records_title">Records</string>
+    <string name="profile_title">Profile</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_households">Households</string>
+    <string name="nav_records">Records</string>
+    <string name="nav_profile">Profile</string>
+
+</resources>

@@ -1,0 +1,43 @@
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Records &amp; submissions"
+        android:textColor="@color/navy"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Track the status of household records saved on this device."
+        android:textColor="@color/muted"
+        android:layout_marginTop="6dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRecords"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="14dp" />
+
+    <TextView
+        android:id="@+id/tvRecordsEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No submissions yet. Open a household and choose Submit record."
+        android:textColor="@color/muted"
+        android:gravity="center"
+        android:padding="26dp"
+        android:visibility="gone" />
+
+</LinearLayout>

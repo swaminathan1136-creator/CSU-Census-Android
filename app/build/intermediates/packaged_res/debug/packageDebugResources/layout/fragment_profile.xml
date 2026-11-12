@@ -1,0 +1,377 @@
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <!-- Screen heading -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Profile"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/navy" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage your collector account"
+            android:textSize="13sp"
+            android:textColor="@color/muted"
+            android:layout_marginTop="5dp" />
+
+        <!-- Profile information card -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_card"
+            android:padding="24dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tvProfileAvatar"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:gravity="center"
+                android:text="C"
+                android:textColor="@color/blue_dark"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_avatar" />
+
+            <TextView
+                android:id="@+id/tvProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Collector"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="@color/navy"
+                android:layout_marginTop="14dp" />
+
+            <TextView
+                android:id="@+id/tvProfileId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSU DATA COLLECTOR"
+                android:textColor="@color/blue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="7dp" />
+
+            <TextView
+                android:id="@+id/tvProfileEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="collector@example.com"
+                android:textColor="@color/muted"
+                android:textSize="13sp"
+                android:layout_marginTop="7dp" />
+
+        </LinearLayout>
+
+        <!-- My Account section -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MY ACCOUNT"
+            android:textColor="@color/muted"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Leaderboard -->
+
+        <LinearLayout
+            android:id="@+id/btnLeaderboardProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:text="🏆"
+                android:textSize="22sp"
+                android:background="@drawable/bg_avatar" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="13dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Leaderboard"
+                    android:textColor="@color/navy"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View collector rankings"
+                    android:textColor="@color/muted"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textSize="27sp"
+                android:textColor="@color/muted" />
+
+        </LinearLayout>
+
+        <!-- Certificates -->
+
+        <LinearLayout
+            android:id="@+id/btnCertificates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:text="📄"
+                android:textSize="21sp"
+                android:background="@drawable/bg_avatar" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="13dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My Certificates"
+                    android:textColor="@color/navy"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View and download certificates"
+                    android:textColor="@color/muted"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textSize="27sp"
+                android:textColor="@color/muted" />
+
+        </LinearLayout>
+
+        <!-- Support section -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SUPPORT &amp; INFORMATION"
+            android:textColor="@color/muted"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.08"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Help and support -->
+
+        <LinearLayout
+            android:id="@+id/btnHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:text="❔"
+                android:textSize="21sp"
+                android:background="@drawable/bg_avatar" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Help &amp; Support"
+                android:textColor="@color/navy"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_marginStart="13dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textSize="27sp"
+                android:textColor="@color/muted" />
+
+        </LinearLayout>
+
+        <!-- Privacy policy -->
+
+        <LinearLayout
+            android:id="@+id/btnPrivacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:text="🛡"
+                android:textSize="21sp"
+                android:background="@drawable/bg_avatar" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Privacy Policy"
+                android:textColor="@color/navy"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_marginStart="13dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textSize="27sp"
+                android:textColor="@color/muted" />
+
+        </LinearLayout>
+
+        <!-- App information -->
+
+        <LinearLayout
+            android:id="@+id/btnAppInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:gravity="center"
+                android:text="ⓘ"
+                android:textSize="23sp"
+                android:textColor="@color/blue"
+                android:background="@drawable/bg_avatar" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="App Information"
+                android:textColor="@color/navy"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_marginStart="13dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="›"
+                android:textSize="27sp"
+                android:textColor="@color/muted" />
+
+        </LinearLayout>
+
+        <!-- App version -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CSU Census &amp; Data Collection\nVersion 1.0.0"
+            android:textColor="@color/muted"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginTop="15dp" />
+
+        <!-- Sign out -->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Sign Out"
+            android:textAllCaps="false"
+            android:textColor="@color/pink"
+            app:backgroundTint="@color/soft_pink"
+            app:cornerRadius="14dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp" />
+
+    </LinearLayout>
+
+</ScrollView>
