@@ -14,23 +14,22 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E8EEF5" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:background="@color/white"
-        android:elevation="12dp"
+        android:layout_height="70dp"
+        android:background="@drawable/bg_bottom_nav"
+        android:elevation="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         app:menu="@menu/bottom_nav"
         app:labelVisibilityMode="labeled"
-        app:itemIconSize="24dp"
+        app:itemIconSize="26dp"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
         app:itemRippleColor="@color/light_blue"
         app:itemActiveIndicatorStyle="@null"
-        app:itemPaddingTop="8dp"
-        app:itemPaddingBottom="8dp" />
+        app:itemPaddingTop="4dp"
+        app:itemPaddingBottom="2dp" />
 
 </LinearLayout>

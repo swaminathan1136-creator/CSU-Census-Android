@@ -1,5 +1,6 @@
 package com.csu.census.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.csu.census.AddHouseholdActivity;
 import com.csu.census.MainActivity;
 import com.csu.census.R;
 import com.csu.census.data.AppStore;
@@ -25,7 +27,6 @@ public class DashboardFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-
         View view = inflater.inflate(
                 R.layout.fragment_dashboard,
                 container,
@@ -42,28 +43,19 @@ public class DashboardFragment extends Fragment {
 
     @Override
     public void onResume() {
-
         super.onResume();
 
         View currentView = getView();
-
         if (currentView != null) {
-
             bindCampaignProgress(currentView);
             bindActivityStatistics(currentView);
         }
     }
 
     private void bindCollectorHeader(View view) {
+        String collectorName = AppStore.profile(requireContext(), "name");
 
-        String collectorName = AppStore.profile(
-                requireContext(),
-                "name"
-        );
-
-        if (collectorName == null
-                || collectorName.trim().isEmpty()) {
-
+        if (collectorName == null || collectorName.trim().isEmpty()) {
             collectorName = "Collector";
         }
 
@@ -81,13 +73,8 @@ public class DashboardFragment extends Fragment {
     }
 
     private void bindCampaignProgress(View view) {
-
         int totalHouseholds = AppStore.households(requireContext()).size();
-
-        int submittedHouseholds = AppStore.countStatus(
-                requireContext(),
-                "Submitted"
-        );
+        int submittedHouseholds = AppStore.countStatus(requireContext(), "Submitted");
 
         int progressPercent = totalHouseholds == 0
                 ? 0
@@ -97,16 +84,13 @@ public class DashboardFragment extends Fragment {
         TextView percentView = view.findViewById(R.id.tvCampaignPercent);
         ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
-        countView.setText(
-                submittedHouseholds + " of " + totalHouseholds + " households submitted"
-        );
+        countView.setText(submittedHouseholds + " of " + totalHouseholds + " households submitted");
         percentView.setText(progressPercent + "%");
         progressBar.setMax(100);
         progressBar.setProgress(progressPercent);
     }
 
     private void bindActivityStatistics(View view) {
-
         int total = AppStore.households(requireContext()).size();
         int submitted = AppStore.countStatus(requireContext(), "Submitted");
         int inReview = AppStore.countStatus(requireContext(), "In Review");
@@ -120,25 +104,25 @@ public class DashboardFragment extends Fragment {
 
     private void bindQuickActions(View view) {
 
+        // Add Household → opens the Add Household screen
         view.findViewById(R.id.btnAddHousehold)
-                .setOnClickListener(button -> {
-                    HouseholdsFragment formFragment = new HouseholdsFragment();
-                    formFragment.showAddDialog(
-                            requireContext(),
-                            () -> ((MainActivity) requireActivity()).openTab(R.id.nav_households)
-                    );
-                });
+                .setOnClickListener(button ->
+                        startActivity(new Intent(requireContext(), AddHouseholdActivity.class))
+                );
 
+        // View Households → switches bottom navigation to Households tab
         view.findViewById(R.id.btnViewHouseholds)
                 .setOnClickListener(button ->
                         ((MainActivity) requireActivity()).openTab(R.id.nav_households)
                 );
 
+        // Submissions / Records → switches bottom navigation to Records tab
         view.findViewById(R.id.btnSubmissions)
                 .setOnClickListener(button ->
                         ((MainActivity) requireActivity()).openTab(R.id.nav_records)
                 );
 
+        // Leaderboard (placeholder)
         view.findViewById(R.id.btnLeaderboard)
                 .setOnClickListener(button ->
                         Toast.makeText(

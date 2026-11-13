@@ -28,26 +28,48 @@
         android:testOnly="true"
         android:theme="@style/Theme.CSUCensus" >
         <activity
-            android:name="com.csu.census.ForgotPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.csu.census.SignupActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.csu.census.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.csu.census.LoginActivity"
-            android:exported="false" />
-        <activity
             android:name="com.csu.census.SplashActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.CSUCensus.Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.csu.census.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.csu.census.SignupActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.csu.census.ForgotPasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.csu.census.OtpVerifyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.csu.census.NewPasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.csu.census.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.csu.census.HouseholdDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.csu.census.AddHouseholdActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.csu.census.ProfileDetailActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

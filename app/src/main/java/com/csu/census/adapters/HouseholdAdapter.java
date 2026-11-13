@@ -16,8 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HouseholdAdapter
-        extends RecyclerView.Adapter<HouseholdAdapter.Holder> {
+public class HouseholdAdapter extends RecyclerView.Adapter<HouseholdAdapter.Holder> {
 
     public interface Listener {
         void onClick(JSONObject item);

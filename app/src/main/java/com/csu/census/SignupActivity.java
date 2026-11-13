@@ -14,6 +14,9 @@ import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.csu.census.data.AppStore;
+import com.csu.census.ui.PasswordToggle;
+
+import java.util.UUID;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -35,19 +38,22 @@ public class SignupActivity extends AppCompatActivity {
 
         EditText nameInput = findViewById(R.id.etName);
         EditText emailInput = findViewById(R.id.etEmail);
-        EditText collectorIdInput = findViewById(R.id.etNewCollectorId);
         EditText passwordInput = findViewById(R.id.etNewPassword);
         EditText confirmPasswordInput = findViewById(R.id.etConfirmPassword);
+
+        PasswordToggle.bind(passwordInput, findViewById(R.id.btnTogglePassword));
+        PasswordToggle.bind(confirmPasswordInput, findViewById(R.id.btnToggleConfirm));
+
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        findViewById(R.id.tvBackLogin).setOnClickListener(v -> finish());
 
         findViewById(R.id.btnCreate).setOnClickListener(view -> {
             String name = nameInput.getText().toString().trim();
             String email = emailInput.getText().toString().trim();
-            String collectorId = collectorIdInput.getText().toString().trim();
             String password = passwordInput.getText().toString();
             String confirmPassword = confirmPasswordInput.getText().toString();
 
-            if (name.isEmpty() || email.isEmpty() || collectorId.isEmpty()
-                    || password.isEmpty() || confirmPassword.isEmpty()) {
+            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 showToast("Please complete all fields");
                 return;
             }
@@ -64,19 +70,20 @@ public class SignupActivity extends AppCompatActivity {
                 return;
             }
 
+            // Auto-generate Collector ID
+            String collectorId = "CSU" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
+
             boolean registered = AppStore.register(this, name, email, collectorId, password);
             if (registered) {
-                showToast("Account created. Please sign in.");
+                showToast("Account created. Your Collector ID is " + collectorId);
                 finish();
             } else {
-                showToast("Collector ID already exists");
+                showToast("Something went wrong. Please try again.");
             }
         });
-
-        findViewById(R.id.tvBackLogin).setOnClickListener(view -> finish());
     }
 
     private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

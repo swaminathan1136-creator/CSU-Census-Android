@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -12,7 +13,7 @@
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
         android:paddingTop="12dp"
-        android:paddingBottom="24dp">
+        android:paddingBottom="32dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,19 +36,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/bg_card"
-            android:padding="24dp"
+            android:background="@drawable/bg_progress_card"
+            android:padding="28dp"
             android:layout_marginTop="18dp"
-            android:elevation="2dp">
+            android:elevation="4dp">
 
             <TextView
                 android:id="@+id/tvProfileAvatar"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
                 android:text="D"
                 android:textColor="@color/blue"
-                android:textSize="28sp"
+                android:textSize="32sp"
                 android:textStyle="bold"
                 android:background="@drawable/bg_avatar" />
 
@@ -56,17 +57,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Demo Collector"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="@color/navy"
-                android:layout_marginTop="12dp" />
+                android:textColor="@color/white"
+                android:layout_marginTop="14dp" />
 
             <TextView
                 android:id="@+id/tvProfileId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CSU DATA COLLECTOR · CSU001"
-                android:textColor="@color/blue"
+                android:text="CSU DATA COLLECTOR  •  1"
+                android:textColor="#B8D4F0"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginTop="6dp" />
@@ -76,274 +77,252 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="demo@csu.org"
-                android:textColor="@color/muted"
+                android:textColor="#A0C4E8"
                 android:textSize="13sp"
-                android:layout_marginTop="6dp" />
+                android:layout_marginTop="4dp" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MY ACCOUNT"
+            android:text="ACCOUNT"
             android:textColor="@color/muted"
             android:textSize="11sp"
             android:textStyle="bold"
-            android:letterSpacing="0.08"
-            android:layout_marginTop="22dp"
+            android:letterSpacing="0.1"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="10dp" />
 
         <LinearLayout
-            android:id="@+id/btnLeaderboardProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:orientation="vertical"
             android:background="@drawable/bg_card"
-            android:padding="14dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginBottom="10dp">
+            android:elevation="2dp">
 
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_profile_trophy"
-                android:scaleType="centerInside"
-                android:background="@drawable/bg_avatar"
-                android:contentDescription="Leaderboard" />
-
+            <!-- Leaderboard -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/btnLeaderboardProfile"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="12dp">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_profile_trophy"
+                    android:background="@drawable/bg_icon_soft"
+                    android:scaleType="centerInside"
+                    android:contentDescription="Leaderboard" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Leaderboard"
                     android:textColor="@color/navy"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginStart="14dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View collector rankings"
-                    android:textColor="@color/muted"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron"
+                    android:contentDescription="Go" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="22sp"
-                android:textColor="@color/muted" />
-        </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/line" android:layout_marginHorizontal="16dp" />
 
-        <LinearLayout
-            android:id="@+id/btnCertificates"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_card"
-            android:padding="14dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_profile_cert"
-                android:scaleType="centerInside"
-                android:background="@drawable/bg_avatar"
-                android:contentDescription="Certificates" />
-
+            <!-- Certificates -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:id="@+id/btnCertificates"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="12dp">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_profile_cert"
+                    android:background="@drawable/bg_icon_soft"
+                    android:scaleType="centerInside"
+                    android:contentDescription="Certificates" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="My Certificates"
                     android:textColor="@color/navy"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:layout_marginStart="14dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="View and download certificates"
-                    android:textColor="@color/muted"
-                    android:textSize="12sp"
-                    android:layout_marginTop="2dp" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron"
+                    android:contentDescription="Go" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/line" android:layout_marginHorizontal="16dp" />
+
+            <!-- Help -->
+            <LinearLayout
+                android:id="@+id/btnHelp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="22sp"
-                android:textColor="@color/muted" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SUPPORT &amp; INFORMATION"
-            android:textColor="@color/muted"
-            android:textSize="11sp"
-            android:textStyle="bold"
-            android:letterSpacing="0.08"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="10dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_profile_help"
+                    android:background="@drawable/bg_icon_soft"
+                    android:scaleType="centerInside"
+                    android:contentDescription="Help" />
 
-        <LinearLayout
-            android:id="@+id/btnHelp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_card"
-            android:padding="14dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Help &amp; Support"
+                    android:textColor="@color/navy"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="14dp" />
 
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_profile_help"
-                android:scaleType="centerInside"
-                android:background="@drawable/bg_avatar"
-                android:contentDescription="Help" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron"
+                    android:contentDescription="Go" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/line" android:layout_marginHorizontal="16dp" />
+
+            <!-- Privacy -->
+            <LinearLayout
+                android:id="@+id/btnPrivacy"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Help &amp; Support"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:layout_marginStart="12dp" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_profile_privacy"
+                    android:background="@drawable/bg_icon_soft"
+                    android:scaleType="centerInside"
+                    android:contentDescription="Privacy" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Privacy Policy"
+                    android:textColor="@color/navy"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="14dp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron"
+                    android:contentDescription="Go" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/line" android:layout_marginHorizontal="16dp" />
+
+            <!-- App Info -->
+            <LinearLayout
+                android:id="@+id/btnAppInfo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="22sp"
-                android:textColor="@color/muted" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="14dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground">
 
-        <LinearLayout
-            android:id="@+id/btnPrivacy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_card"
-            android:padding="14dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginBottom="10dp">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_profile_info"
+                    android:background="@drawable/bg_icon_soft"
+                    android:scaleType="centerInside"
+                    android:contentDescription="App Info" />
 
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_profile_privacy"
-                android:scaleType="centerInside"
-                android:background="@drawable/bg_avatar"
-                android:contentDescription="Privacy" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="App Information"
+                    android:textColor="@color/navy"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginStart="14dp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Privacy Policy"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:layout_marginStart="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="22sp"
-                android:textColor="@color/muted" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnAppInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_card"
-            android:padding="14dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_marginBottom="16dp">
-
-            <ImageView
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_profile_info"
-                android:scaleType="centerInside"
-                android:background="@drawable/bg_avatar"
-                android:contentDescription="Info" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="App Information"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:layout_marginStart="12dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="›"
-                android:textSize="22sp"
-                android:textColor="@color/muted" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_chevron"
+                    android:contentDescription="Go" />
+            </LinearLayout>
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSignOut"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="54dp"
             android:text="Sign Out"
             android:textAllCaps="false"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:backgroundTint="@color/soft_red"
-            android:textColor="@color/red" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CSU Census &amp; Data Collection · v1.0.0"
-            android:textColor="@color/muted"
-            android:textSize="11sp"
-            android:gravity="center"
-            android:layout_marginTop="16dp" />
+            android:textColor="@color/red"
+            android:layout_marginTop="28dp"
+            app:backgroundTint="@color/soft_red"
+            app:cornerRadius="14dp"
+            app:strokeColor="@color/red"
+            app:strokeWidth="1.5dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
     </LinearLayout>
 </ScrollView>

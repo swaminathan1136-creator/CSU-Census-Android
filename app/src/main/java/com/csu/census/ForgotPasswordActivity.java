@@ -1,5 +1,6 @@
 package com.csu.census;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -34,34 +35,25 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
 
         EditText emailInput = findViewById(R.id.etResetEmail);
-        EditText passwordInput = findViewById(R.id.etResetPassword);
 
-        findViewById(R.id.btnReset).setOnClickListener(view -> {
+        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+
+        findViewById(R.id.btnSendOtp).setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
-            String password = passwordInput.getText().toString();
-
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                showToast("Enter a valid registered email address");
-                return;
-            }
-            if (password.length() < 6) {
-                showToast("Password must be at least 6 characters");
+            if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            boolean updated = AppStore.resetPassword(this, email, password);
-            if (updated) {
-                showToast("Password updated on this device. Please sign in again.");
-                finish();
-            } else {
-                showToast("No local account found for this email address");
+            boolean exists = AppStore.emailExists(this, email);
+            if (!exists) {
+                Toast.makeText(this, "No account found with this email", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            Intent intent = new Intent(this, OtpVerifyActivity.class);
+            intent.putExtra("email", email);
+            startActivity(intent);
         });
-
-        findViewById(R.id.btnBack).setOnClickListener(view -> finish());
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

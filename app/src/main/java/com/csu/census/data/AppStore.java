@@ -30,6 +30,7 @@ public final class AppStore {
         SharedPreferences store = preferences(context);
 
         try {
+            // Demo account – Collector ID: 1 , Password: 1
             JSONObject demoAccount = new JSONObject();
             demoAccount.put("name", "Demo Collector");
             demoAccount.put("email", "demo@csu.org");
@@ -50,28 +51,34 @@ public final class AppStore {
             JSONObject h1 = new JSONObject();
             h1.put("id", "HH-0001");
             h1.put("name", "Sharma Family");
-            h1.put("address", "12 MG Road, Sector 5");
+            h1.put("address", "12 MG Road, Sector 5, New Delhi");
             h1.put("members", 4);
             h1.put("status", "Submitted");
             h1.put("date", "10 Nov 2026");
+            h1.put("phone", "+91 98765 43210");
+            h1.put("notes", "Primary contact: Rajesh Sharma. All members present during survey.");
             households.put(h1);
 
             JSONObject h2 = new JSONObject();
             h2.put("id", "HH-0002");
             h2.put("name", "Patel Residence");
-            h2.put("address", "45 Lake View Apartments");
+            h2.put("address", "45 Lake View Apartments, Sector 12");
             h2.put("members", 3);
             h2.put("status", "Draft");
             h2.put("date", "11 Nov 2026");
+            h2.put("phone", "+91 91234 56789");
+            h2.put("notes", "Follow-up required for member details.");
             households.put(h2);
 
             JSONObject h3 = new JSONObject();
             h3.put("id", "HH-0003");
             h3.put("name", "Khan Household");
-            h3.put("address", "8 Park Street, Block B");
+            h3.put("address", "8 Park Street, Block B, South City");
             h3.put("members", 5);
             h3.put("status", "In Review");
             h3.put("date", "11 Nov 2026");
+            h3.put("phone", "+91 99887 76655");
+            h3.put("notes", "Large household – verification in progress.");
             households.put(h3);
 
             JSONArray records = new JSONArray();
@@ -174,6 +181,22 @@ public final class AppStore {
         return false;
     }
 
+    public static boolean emailExists(Context context, String email) {
+        SharedPreferences store = preferences(context);
+        Map<String, ?> all = store.getAll();
+        for (String key : all.keySet()) {
+            if (!key.startsWith("account_")) continue;
+            try {
+                JSONObject account = new JSONObject(store.getString(key, "{}"));
+                if (email.equalsIgnoreCase(account.optString("email"))) {
+                    return true;
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return false;
+    }
+
     public static String activeId(Context context) {
         return preferences(context).getString(KEY_ACTIVE_ID, "1");
     }
@@ -222,7 +245,9 @@ public final class AppStore {
             Context context,
             String name,
             String address,
-            int members
+            int members,
+            String phone,
+            String notes
     ) {
         JSONArray savedHouseholds = readArray(context, KEY_HOUSEHOLDS);
 
@@ -240,6 +265,8 @@ public final class AppStore {
             household.put("members", members);
             household.put("status", "Draft");
             household.put("date", formatDate("dd MMM yyyy"));
+            household.put("phone", phone != null ? phone : "");
+            household.put("notes", notes != null ? notes : "");
 
             savedHouseholds.put(household);
 
@@ -249,6 +276,25 @@ public final class AppStore {
                     .apply();
         } catch (Exception ignored) {
         }
+    }
+
+    // Backward-compatible overload
+    public static void addHousehold(
+            Context context,
+            String name,
+            String address,
+            int members
+    ) {
+        addHousehold(context, name, address, members, "", "");
+    }
+
+    public static JSONObject getHousehold(Context context, String householdId) {
+        for (JSONObject h : households(context)) {
+            if (householdId.equals(h.optString("id"))) {
+                return h;
+            }
+        }
+        return null;
     }
 
     public static void submitHousehold(Context context, String householdId) {
