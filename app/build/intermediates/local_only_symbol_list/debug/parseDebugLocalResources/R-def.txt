@@ -48,6 +48,8 @@ drawable csu_logo
 drawable csu_logo_original
 drawable ic_back
 drawable ic_chevron
+drawable ic_eye
+drawable ic_eye_off
 drawable ic_house_small
 drawable ic_nav_home
 drawable ic_nav_households

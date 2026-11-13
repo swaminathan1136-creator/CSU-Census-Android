@@ -2968,6 +2968,8 @@ int drawable ic_call_decline_low 0x7f070095
 int drawable ic_chevron 0x7f070103
 int drawable ic_clear_black_24 0x7f070096
 int drawable ic_clock_black_24dp 0x7f070097
+int drawable ic_eye 0x7f070106
+int drawable ic_eye_off 0x7f070107
 int drawable ic_house_small 0x7f070104
 int drawable ic_keyboard_black_24dp 0x7f070098
 int drawable ic_m3_chip_check 0x7f070099
