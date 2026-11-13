@@ -28,11 +28,11 @@ com.csu.census.app-startup-runtime-1.1.1-26 /Users/r.ramakrishnan/.gradle/caches
 com.csu.census.app-transition-1.5.0-27 /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/f91959483ca4f640ff5c194b4d4a4426/transformed/transition-1.5.0/res
 com.csu.census.app-lifecycle-process-2.6.2-28 /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/f92d59e1c02e9e565fcdb94fc88d3ec3/transformed/lifecycle-process-2.6.2/res
 com.csu.census.app-tracing-1.2.0-29 /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/fdccea98e4943e5df0bbf60e93bdfd0f/transformed/tracing-1.2.0/res
-com.csu.census.app-pngs-30 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/build/generated/res/pngs/debug
-com.csu.census.app-resValues-31 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/build/generated/res/resValues/debug
-com.csu.census.app-updated_navigation_xml-32 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/build/generated/updated_navigation_xml/debug
-com.csu.census.app-packageDebugResources-33 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
-com.csu.census.app-packageDebugResources-34 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
-com.csu.census.app-debug-35 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/build/intermediates/merged_res/debug/mergeDebugResources
-com.csu.census.app-debug-36 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/src/debug/res
-com.csu.census.app-main-37 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/app/src/main/res
+com.csu.census.app-pngs-30 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/build/generated/res/pngs/debug
+com.csu.census.app-resValues-31 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/build/generated/res/resValues/debug
+com.csu.census.app-updated_navigation_xml-32 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/build/generated/updated_navigation_xml/debug
+com.csu.census.app-packageDebugResources-33 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.csu.census.app-packageDebugResources-34 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.csu.census.app-debug-35 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.csu.census.app-debug-36 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/debug/res
+com.csu.census.app-main-37 /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/res

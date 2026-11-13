@@ -2,6 +2,7 @@ package com.csu.census.fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -39,60 +40,13 @@ public class HouseholdsFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState
     ) {
-        View view = inflater.inflate(
-                R.layout.fragment_households,
-                container,
-                false
-        );
+        View view = inflater.inflate(R.layout.fragment_households, container, false);
 
         recyclerView = view.findViewById(R.id.rvHouseholds);
         emptyState = view.findViewById(R.id.tvEmpty);
 
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(requireContext())
-        );
-
-        adapter = new HouseholdAdapter(
-                new ArrayList<>(),
-                household -> {
-                    String id = household.optString("id");
-                    String status = household.optString("status");
-
-                    if ("Draft".equals(status) || "Returned".equals(status)) {
-                        new AlertDialog.Builder(requireContext())
-                                .setTitle(household.optString("name"))
-                                .setMessage(
-                                        "Address: " + household.optString("address")
-                                                + "\nMembers: " + household.optInt("members")
-                                                + "\nStatus: " + status
-                                                + "\n\nSubmit this household?"
-                                )
-                                .setNegativeButton("Cancel", null)
-                                .setPositiveButton("Submit", (d, w) -> {
-                                    AppStore.submitHousehold(requireContext(), id);
-                                    refreshList();
-                                    Toast.makeText(
-                                            requireContext(),
-                                            "Household submitted",
-                                            Toast.LENGTH_SHORT
-                                    ).show();
-                                })
-                                .show();
-                    } else {
-                        new AlertDialog.Builder(requireContext())
-                                .setTitle(household.optString("name"))
-                                .setMessage(
-                                        "Address: " + household.optString("address")
-                                                + "\nMembers: " + household.optInt("members")
-                                                + "\nStatus: " + status
-                                                + "\nDate: " + household.optString("date")
-                                )
-                                .setPositiveButton("Close", null)
-                                .show();
-                    }
-                }
-        );
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        adapter = new HouseholdAdapter(new ArrayList<>(), this::showHouseholdDetail);
         recyclerView.setAdapter(adapter);
 
         view.findViewById(R.id.btnAddHousehold)
@@ -109,13 +63,57 @@ public class HouseholdsFragment extends Fragment {
     }
 
     private void refreshList() {
-        ArrayList<JSONObject> list =
-                AppStore.households(requireContext());
+        ArrayList<JSONObject> list = AppStore.households(requireContext());
         adapter.update(list);
-
         boolean empty = list.isEmpty();
         emptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
         recyclerView.setVisibility(empty ? View.GONE : View.VISIBLE);
+    }
+
+    private void showHouseholdDetail(JSONObject household) {
+        String id = household.optString("id");
+        String name = household.optString("name");
+        String status = household.optString("status");
+        String address = household.optString("address");
+        int members = household.optInt("members");
+        String date = household.optString("date");
+
+        Context context = requireContext();
+        int pad = (int) (22 * context.getResources().getDisplayMetrics().density);
+
+        LinearLayout content = new LinearLayout(context);
+        content.setOrientation(LinearLayout.VERTICAL);
+        content.setPadding(pad, pad / 2, pad, pad / 2);
+
+        content.addView(makeDetailRow(context, "ID", id));
+        content.addView(makeDetailRow(context, "Address", address));
+        content.addView(makeDetailRow(context, "Members", String.valueOf(members)));
+        content.addView(makeDetailRow(context, "Status", status));
+        content.addView(makeDetailRow(context, "Date", date));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(name)
+                .setView(content)
+                .setPositiveButton("Close", null);
+
+        if ("Draft".equals(status) || "Returned".equals(status)) {
+            builder.setNeutralButton("Submit", (d, w) -> {
+                AppStore.submitHousehold(context, id);
+                refreshList();
+                Toast.makeText(context, "Household submitted", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+        builder.show();
+    }
+
+    private TextView makeDetailRow(Context context, String label, String value) {
+        TextView row = new TextView(context);
+        row.setText(label + "  ·  " + value);
+        row.setTextColor(Color.parseColor("#0E2542"));
+        row.setTextSize(14f);
+        row.setPadding(0, 10, 0, 10);
+        return row;
     }
 
     public void showAddDialog(Context context, Runnable onDone) {
@@ -124,44 +122,16 @@ public class HouseholdsFragment extends Fragment {
         int pad = (int) (20 * context.getResources().getDisplayMetrics().density);
         form.setPadding(pad, pad / 2, pad, pad / 2);
 
-        TextView nameLabel = new TextView(context);
-        nameLabel.setText("Household name");
-        nameLabel.setTextColor(0xFF0E2542);
-        nameLabel.setPadding(0, 8, 0, 4);
-        form.addView(nameLabel);
-
-        EditText nameInput = new EditText(context);
-        nameInput.setHint("e.g. Sharma Family");
-        nameInput.setBackgroundResource(R.drawable.bg_input);
-        nameInput.setPadding(pad / 2, pad / 2, pad / 2, pad / 2);
-        nameInput.setSingleLine(true);
+        form.addView(makeLabel(context, "Household name"));
+        EditText nameInput = makeInput(context, "e.g. Sharma Family", InputType.TYPE_CLASS_TEXT);
         form.addView(nameInput);
 
-        TextView addressLabel = new TextView(context);
-        addressLabel.setText("Address");
-        addressLabel.setTextColor(0xFF0E2542);
-        addressLabel.setPadding(0, 16, 0, 4);
-        form.addView(addressLabel);
-
-        EditText addressInput = new EditText(context);
-        addressInput.setHint("Street, area, city");
-        addressInput.setBackgroundResource(R.drawable.bg_input);
-        addressInput.setPadding(pad / 2, pad / 2, pad / 2, pad / 2);
-        addressInput.setSingleLine(true);
+        form.addView(makeLabel(context, "Address"));
+        EditText addressInput = makeInput(context, "Street, area, city", InputType.TYPE_CLASS_TEXT);
         form.addView(addressInput);
 
-        TextView membersLabel = new TextView(context);
-        membersLabel.setText("Number of members");
-        membersLabel.setTextColor(0xFF0E2542);
-        membersLabel.setPadding(0, 16, 0, 4);
-        form.addView(membersLabel);
-
-        EditText membersInput = new EditText(context);
-        membersInput.setHint("e.g. 4");
-        membersInput.setInputType(InputType.TYPE_CLASS_NUMBER);
-        membersInput.setBackgroundResource(R.drawable.bg_input);
-        membersInput.setPadding(pad / 2, pad / 2, pad / 2, pad / 2);
-        membersInput.setSingleLine(true);
+        form.addView(makeLabel(context, "Number of members"));
+        EditText membersInput = makeInput(context, "e.g. 4", InputType.TYPE_CLASS_NUMBER);
         form.addView(membersInput);
 
         new AlertDialog.Builder(context)
@@ -193,5 +163,26 @@ public class HouseholdsFragment extends Fragment {
                     }
                 })
                 .show();
+    }
+
+    private TextView makeLabel(Context context, String text) {
+        TextView label = new TextView(context);
+        label.setText(text);
+        label.setTextColor(Color.parseColor("#0E2542"));
+        label.setTextSize(13f);
+        label.setPadding(0, 14, 0, 6);
+        return label;
+    }
+
+    private EditText makeInput(Context context, String hint, int inputType) {
+        int pad = (int) (12 * context.getResources().getDisplayMetrics().density);
+        EditText input = new EditText(context);
+        input.setHint(hint);
+        input.setInputType(inputType);
+        input.setBackgroundResource(R.drawable.bg_input);
+        input.setPadding(pad, pad, pad, pad);
+        input.setSingleLine(true);
+        input.setTextSize(15f);
+        return input;
     }
 }

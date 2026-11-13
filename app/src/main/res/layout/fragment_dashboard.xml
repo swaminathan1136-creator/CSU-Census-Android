@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
-
-        <!-- Collector header (avatar left like iOS) -->
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,12 +68,8 @@
                     android:textColor="@color/muted"
                     android:textSize="11sp"
                     android:layout_marginTop="3dp" />
-
             </LinearLayout>
-
         </LinearLayout>
-
-        <!-- Campaign progress card (gradient like iOS) -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -113,7 +109,6 @@
                         android:textSize="19sp"
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
-
                 </LinearLayout>
 
                 <TextView
@@ -123,7 +118,6 @@
                     android:text="📊"
                     android:textSize="22sp"
                     android:background="#24FFFFFF" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -149,7 +143,6 @@
                     android:textColor="@color/white"
                     android:textSize="23sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
 
             <ProgressBar
@@ -185,12 +178,8 @@
                     android:textColor="#E6FFFFFF"
                     android:textSize="12sp"
                     android:layout_marginStart="6dp" />
-
             </LinearLayout>
-
         </LinearLayout>
-
-        <!-- Your Activity -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -220,19 +209,8 @@
                     android:textColor="@color/muted"
                     android:textSize="12sp"
                     android:layout_marginTop="2dp" />
-
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="▦"
-                android:textColor="@color/blue"
-                android:textSize="20sp" />
-
         </LinearLayout>
-
-        <!-- Activity statistics 2x2 -->
 
         <GridLayout
             android:layout_width="match_parent"
@@ -242,7 +220,6 @@
             android:useDefaultMargins="true"
             android:layout_marginTop="12dp">
 
-            <!-- Households -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
@@ -275,10 +252,8 @@
                     android:textColor="@color/muted"
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
-
             </LinearLayout>
 
-            <!-- Submitted -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
@@ -311,10 +286,8 @@
                     android:textColor="@color/green"
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
-
             </LinearLayout>
 
-            <!-- In review -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
@@ -347,10 +320,8 @@
                     android:textColor="@color/blue"
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
-
             </LinearLayout>
 
-            <!-- Returned -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
@@ -383,12 +354,8 @@
                     android:textColor="@color/pink"
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
-
             </LinearLayout>
-
         </GridLayout>
-
-        <!-- Quick Actions -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -410,22 +377,20 @@
             <LinearLayout
                 android:id="@+id/btnAddHousehold"
                 android:layout_width="0dp"
-                android:layout_height="105dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@color/soft_green"
+                android:background="@drawable/bg_qa_green"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="+"
-                    android:textColor="@color/green"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_qa_add"
+                    android:contentDescription="Add" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -434,28 +399,26 @@
                     android:textColor="@color/navy"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="5dp" />
-
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/btnViewHouseholds"
                 android:layout_width="0dp"
-                android:layout_height="105dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@color/soft_blue"
+                android:background="@drawable/bg_qa_blue"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="⌂"
-                    android:textColor="@color/blue"
-                    android:textSize="26sp" />
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_qa_home"
+                    android:contentDescription="Households" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -464,28 +427,26 @@
                     android:textColor="@color/navy"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="5dp" />
-
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/btnSubmissions"
                 android:layout_width="0dp"
-                android:layout_height="105dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@color/soft_pink"
+                android:background="@drawable/bg_qa_pink"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="▣"
-                    android:textColor="@color/pink"
-                    android:textSize="26sp" />
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_qa_records"
+                    android:contentDescription="Submissions" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -494,28 +455,26 @@
                     android:textColor="@color/navy"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="5dp" />
-
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/btnLeaderboard"
                 android:layout_width="0dp"
-                android:layout_height="105dp"
+                android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/bg_stat_card"
+                android:background="@drawable/bg_qa_white"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackground">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="♜"
-                    android:textColor="@color/orange"
-                    android:textSize="26sp" />
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_qa_leaderboard"
+                    android:contentDescription="Leaderboard" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -524,10 +483,8 @@
                     android:textColor="@color/navy"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="5dp" />
-
+                    android:layout_marginTop="8dp" />
             </LinearLayout>
-
         </GridLayout>
 
         <TextView
@@ -540,5 +497,4 @@
             android:layout_marginBottom="16dp" />
 
     </LinearLayout>
-
 </ScrollView>

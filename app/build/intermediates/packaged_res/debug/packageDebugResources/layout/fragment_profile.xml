@@ -1,26 +1,24 @@
-
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:fillViewport="true"
     android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="22dp">
-
-        <!-- Screen heading -->
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="My Profile"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/navy" />
 
@@ -30,9 +28,7 @@
             android:text="Manage your collector account"
             android:textSize="13sp"
             android:textColor="@color/muted"
-            android:layout_marginTop="5dp" />
-
-        <!-- Profile information card -->
+            android:layout_marginTop="4dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,16 +37,17 @@
             android:gravity="center"
             android:background="@drawable/bg_card"
             android:padding="24dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="18dp"
+            android:elevation="2dp">
 
             <TextView
                 android:id="@+id/tvProfileAvatar"
-                android:layout_width="76dp"
-                android:layout_height="76dp"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
                 android:gravity="center"
-                android:text="C"
-                android:textColor="@color/blue_dark"
-                android:textSize="30sp"
+                android:text="D"
+                android:textColor="@color/blue"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 android:background="@drawable/bg_avatar" />
 
@@ -58,47 +55,42 @@
                 android:id="@+id/tvProfileName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Collector"
-                android:textSize="21sp"
+                android:text="Demo Collector"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/navy"
-                android:layout_marginTop="14dp" />
+                android:layout_marginTop="12dp" />
 
             <TextView
                 android:id="@+id/tvProfileId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CSU DATA COLLECTOR"
+                android:text="CSU DATA COLLECTOR · CSU001"
                 android:textColor="@color/blue"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_marginTop="7dp" />
+                android:layout_marginTop="6dp" />
 
             <TextView
                 android:id="@+id/tvProfileEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="collector@example.com"
+                android:text="demo@csu.org"
                 android:textColor="@color/muted"
                 android:textSize="13sp"
-                android:layout_marginTop="7dp" />
-
+                android:layout_marginTop="6dp" />
         </LinearLayout>
-
-        <!-- My Account section -->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="MY ACCOUNT"
             android:textColor="@color/muted"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textStyle="bold"
             android:letterSpacing="0.08"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="22dp"
             android:layout_marginBottom="10dp" />
-
-        <!-- Leaderboard -->
 
         <LinearLayout
             android:id="@+id/btnLeaderboardProfile"
@@ -107,28 +99,29 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@drawable/bg_card"
-            android:padding="16dp"
+            android:padding="14dp"
             android:clickable="true"
             android:focusable="true"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <ImageView
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:gravity="center"
-                android:text="🏆"
-                android:textSize="22sp"
-                android:background="@drawable/bg_avatar" />
+                android:padding="10dp"
+                android:src="@drawable/ic_profile_trophy"
+                android:scaleType="centerInside"
+                android:background="@drawable/bg_avatar"
+                android:contentDescription="Leaderboard" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginStart="13dp">
+                android:layout_marginStart="12dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Leaderboard"
                     android:textColor="@color/navy"
@@ -136,25 +129,21 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View collector rankings"
                     android:textColor="@color/muted"
                     android:textSize="12sp"
-                    android:layout_marginTop="4dp" />
-
+                    android:layout_marginTop="2dp" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="›"
-                android:textSize="27sp"
+                android:textSize="22sp"
                 android:textColor="@color/muted" />
-
         </LinearLayout>
-
-        <!-- Certificates -->
 
         <LinearLayout
             android:id="@+id/btnCertificates"
@@ -163,28 +152,29 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@drawable/bg_card"
-            android:padding="16dp"
+            android:padding="14dp"
             android:clickable="true"
             android:focusable="true"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <ImageView
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:gravity="center"
-                android:text="📄"
-                android:textSize="21sp"
-                android:background="@drawable/bg_avatar" />
+                android:padding="10dp"
+                android:src="@drawable/ic_profile_cert"
+                android:scaleType="centerInside"
+                android:background="@drawable/bg_avatar"
+                android:contentDescription="Certificates" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginStart="13dp">
+                android:layout_marginStart="12dp">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="My Certificates"
                     android:textColor="@color/navy"
@@ -192,38 +182,32 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View and download certificates"
                     android:textColor="@color/muted"
                     android:textSize="12sp"
-                    android:layout_marginTop="4dp" />
-
+                    android:layout_marginTop="2dp" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="›"
-                android:textSize="27sp"
+                android:textSize="22sp"
                 android:textColor="@color/muted" />
-
         </LinearLayout>
-
-        <!-- Support section -->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SUPPORT &amp; INFORMATION"
             android:textColor="@color/muted"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textStyle="bold"
             android:letterSpacing="0.08"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="10dp" />
-
-        <!-- Help and support -->
 
         <LinearLayout
             android:id="@+id/btnHelp"
@@ -232,18 +216,19 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@drawable/bg_card"
-            android:padding="16dp"
+            android:padding="14dp"
             android:clickable="true"
             android:focusable="true"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <ImageView
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:gravity="center"
-                android:text="❔"
-                android:textSize="21sp"
-                android:background="@drawable/bg_avatar" />
+                android:padding="10dp"
+                android:src="@drawable/ic_profile_help"
+                android:scaleType="centerInside"
+                android:background="@drawable/bg_avatar"
+                android:contentDescription="Help" />
 
             <TextView
                 android:layout_width="0dp"
@@ -253,18 +238,15 @@
                 android:textColor="@color/navy"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:layout_marginStart="13dp" />
+                android:layout_marginStart="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="›"
-                android:textSize="27sp"
+                android:textSize="22sp"
                 android:textColor="@color/muted" />
-
         </LinearLayout>
-
-        <!-- Privacy policy -->
 
         <LinearLayout
             android:id="@+id/btnPrivacy"
@@ -273,18 +255,19 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@drawable/bg_card"
-            android:padding="16dp"
+            android:padding="14dp"
             android:clickable="true"
             android:focusable="true"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <ImageView
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:gravity="center"
-                android:text="🛡"
-                android:textSize="21sp"
-                android:background="@drawable/bg_avatar" />
+                android:padding="10dp"
+                android:src="@drawable/ic_profile_privacy"
+                android:scaleType="centerInside"
+                android:background="@drawable/bg_avatar"
+                android:contentDescription="Privacy" />
 
             <TextView
                 android:layout_width="0dp"
@@ -294,18 +277,15 @@
                 android:textColor="@color/navy"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:layout_marginStart="13dp" />
+                android:layout_marginStart="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="›"
-                android:textSize="27sp"
+                android:textSize="22sp"
                 android:textColor="@color/muted" />
-
         </LinearLayout>
-
-        <!-- App information -->
 
         <LinearLayout
             android:id="@+id/btnAppInfo"
@@ -314,19 +294,19 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@drawable/bg_card"
-            android:padding="16dp"
+            android:padding="14dp"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="16dp">
 
-            <TextView
+            <ImageView
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:gravity="center"
-                android:text="ⓘ"
-                android:textSize="23sp"
-                android:textColor="@color/blue"
-                android:background="@drawable/bg_avatar" />
+                android:padding="10dp"
+                android:src="@drawable/ic_profile_info"
+                android:scaleType="centerInside"
+                android:background="@drawable/bg_avatar"
+                android:contentDescription="Info" />
 
             <TextView
                 android:layout_width="0dp"
@@ -336,42 +316,34 @@
                 android:textColor="@color/navy"
                 android:textStyle="bold"
                 android:textSize="15sp"
-                android:layout_marginStart="13dp" />
+                android:layout_marginStart="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="›"
-                android:textSize="27sp"
+                android:textSize="22sp"
                 android:textColor="@color/muted" />
-
         </LinearLayout>
-
-        <!-- App version -->
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="CSU Census &amp; Data Collection\nVersion 1.0.0"
-            android:textColor="@color/muted"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:layout_marginTop="15dp" />
-
-        <!-- Sign out -->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSignOut"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="50dp"
             android:text="Sign Out"
             android:textAllCaps="false"
-            android:textColor="@color/pink"
-            app:backgroundTint="@color/soft_pink"
-            app:cornerRadius="14dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp" />
+            android:textStyle="bold"
+            android:backgroundTint="@color/soft_red"
+            android:textColor="@color/red" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CSU Census &amp; Data Collection · v1.0.0"
+            android:textColor="@color/muted"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
-
 </ScrollView>

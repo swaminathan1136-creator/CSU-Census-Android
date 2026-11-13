@@ -1,6 +1,6 @@
-
 package com.csu.census.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +15,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class RecordAdapter
-    extends RecyclerView.Adapter<RecordAdapter.Holder> {
+public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.Holder> {
 
     private final List<JSONObject> data;
 
@@ -26,42 +25,31 @@ public class RecordAdapter
 
     @NonNull
     @Override
-    public Holder onCreateViewHolder(
-        @NonNull ViewGroup parent,
-        int viewType
-    ) {
-
+    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-            .inflate(
-                R.layout.item_record,
-                parent,
-                false
-            );
-
+                .inflate(R.layout.item_record, parent, false);
         return new Holder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(
-        @NonNull Holder holder,
-        int position
-    ) {
-
+    public void onBindViewHolder(@NonNull Holder holder, int position) {
         JSONObject record = data.get(position);
+        holder.title.setText(record.optString("id") + " • " + record.optString("name"));
+        holder.meta.setText(record.optString("date"));
 
-        holder.title.setText(
-            record.optString("id")
-                + " • "
-                + record.optString("name")
-        );
+        String status = record.optString("status", "Submitted");
+        holder.status.setText(status);
 
-        holder.meta.setText(
-            record.optString("date")
-        );
-
-        holder.status.setText(
-            record.optString("status")
-        );
+        if ("Returned".equals(status)) {
+            holder.status.setBackgroundResource(R.drawable.bg_status_returned);
+            holder.status.setTextColor(Color.parseColor("#C44A5A"));
+        } else if ("In Review".equals(status)) {
+            holder.status.setBackgroundResource(R.drawable.bg_status_review);
+            holder.status.setTextColor(Color.parseColor("#C4781A"));
+        } else {
+            holder.status.setBackgroundResource(R.drawable.bg_status_submitted);
+            holder.status.setTextColor(Color.parseColor("#1F8A5B"));
+        }
     }
 
     @Override
@@ -70,25 +58,15 @@ public class RecordAdapter
     }
 
     static class Holder extends RecyclerView.ViewHolder {
-
         final TextView title;
         final TextView meta;
         final TextView status;
 
         Holder(@NonNull View itemView) {
             super(itemView);
-
-            title = itemView.findViewById(
-                R.id.tvRecordTitle
-            );
-
-            meta = itemView.findViewById(
-                R.id.tvRecordMeta
-            );
-
-            status = itemView.findViewById(
-                R.id.tvRecordStatus
-            );
+            title = itemView.findViewById(R.id.tvRecordTitle);
+            meta = itemView.findViewById(R.id.tvRecordMeta);
+            status = itemView.findViewById(R.id.tvRecordStatus);
         }
     }
 }
