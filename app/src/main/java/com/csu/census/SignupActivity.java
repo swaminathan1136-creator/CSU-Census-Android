@@ -73,7 +73,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btnBack).setOnClickListener(view -> finish());
+        findViewById(R.id.tvBackLogin).setOnClickListener(view -> finish());
     }
 
     private void showToast(String message) {

@@ -1,35 +1,41 @@
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission
-        android:name="android.permission.INTERNET" />
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:label="CSU Census"
         android:icon="@drawable/csu_logo"
+        android:label="CSU Census"
         android:roundIcon="@drawable/csu_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.CSUCensus">
+
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
+
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.MAIN" />
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
+
 </manifest>

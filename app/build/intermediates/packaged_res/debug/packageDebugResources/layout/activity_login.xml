@@ -90,18 +90,35 @@
                 android:textSize="14sp"
                 android:layout_marginTop="18dp" />
 
-            <EditText
-                android:id="@+id/etPassword"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:layout_marginTop="8dp"
-                android:paddingHorizontal="16dp"
-                android:singleLine="true"
-                android:hint="Enter password"
-                android:inputType="textPassword"
-                android:background="@drawable/bg_input"
-                android:textColor="@color/navy"
-                android:textSize="15sp" />
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="48dp"
+                    android:singleLine="true"
+                    android:hint="Enter password"
+                    android:inputType="textPassword"
+                    android:background="@drawable/bg_input"
+                    android:textColor="@color/navy"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/btnTogglePassword"
+                    android:layout_width="48dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end|center_vertical"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Show password"
+                    android:src="@drawable/ic_eye_off"
+                    android:scaleType="centerInside"
+                    android:padding="12dp" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tvForgot"
@@ -160,7 +177,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Demo: CSU001  /  Demo@1234"
+            android:text="Demo: 1  /  1"
             android:textSize="12sp"
             android:textColor="@color/muted"
             android:layout_marginTop="20dp" />

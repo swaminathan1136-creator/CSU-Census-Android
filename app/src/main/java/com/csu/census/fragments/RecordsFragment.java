@@ -1,4 +1,3 @@
-
 package com.csu.census.fragments;
 
 import android.os.Bundle;
@@ -21,40 +20,29 @@ public class RecordsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(
-        @NonNull LayoutInflater inflater,
-        @Nullable ViewGroup container,
-        @Nullable Bundle savedInstanceState
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
     ) {
 
         View view = inflater.inflate(
-            R.layout.fragment_records,
-            container,
-            false
+                R.layout.fragment_records,
+                container,
+                false
         );
 
-        RecyclerView recordsRecyclerView =
-            view.findViewById(R.id.rvRecords);
+        RecyclerView recordsRecyclerView = view.findViewById(R.id.rvRecords);
+        recordsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recordsRecyclerView.setLayoutManager(
-            new LinearLayoutManager(getContext())
-        );
-
-        RecordAdapter adapter = new RecordAdapter(
-            AppStore.records(requireContext())
-        );
-
+        RecordAdapter adapter = new RecordAdapter(AppStore.records(requireContext()));
         recordsRecyclerView.setAdapter(adapter);
 
         boolean isEmpty = adapter.getItemCount() == 0;
 
         view.findViewById(R.id.tvRecordsEmpty)
-            .setVisibility(
-                isEmpty ? View.VISIBLE : View.GONE
-            );
+                .setVisibility(isEmpty ? View.VISIBLE : View.GONE);
 
-        recordsRecyclerView.setVisibility(
-            isEmpty ? View.GONE : View.VISIBLE
-        );
+        recordsRecyclerView.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
 
         return view;
     }

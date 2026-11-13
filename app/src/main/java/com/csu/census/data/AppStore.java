@@ -30,15 +30,13 @@ public final class AppStore {
         SharedPreferences store = preferences(context);
 
         try {
-            if (!store.contains("account_CSU001")) {
-                JSONObject demoAccount = new JSONObject();
-                demoAccount.put("name", "Demo Collector");
-                demoAccount.put("email", "demo@csu.org");
-                demoAccount.put("password", "Demo@1234");
-                store.edit()
-                        .putString("account_CSU001", demoAccount.toString())
-                        .apply();
-            }
+            JSONObject demoAccount = new JSONObject();
+            demoAccount.put("name", "Demo Collector");
+            demoAccount.put("email", "demo@csu.org");
+            demoAccount.put("password", "1");
+            store.edit()
+                    .putString("account_1", demoAccount.toString())
+                    .apply();
 
             String existing = store.getString(KEY_HOUSEHOLDS, "[]");
             if (store.getBoolean("seeded", false)
@@ -177,7 +175,7 @@ public final class AppStore {
     }
 
     public static String activeId(Context context) {
-        return preferences(context).getString(KEY_ACTIVE_ID, "CSU001");
+        return preferences(context).getString(KEY_ACTIVE_ID, "1");
     }
 
     public static String profile(Context context, String field) {

@@ -8,10 +8,6 @@
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/layout/fragment_records.xml"
     },
     {
-        "merged": "com.csu.census.app-debug-34:/drawable_ic_eye.xml.flat",
-        "source": "com.csu.census.app-main-36:/drawable/ic_eye.xml"
-    },
-    {
         "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_bg_status_submitted.xml.flat",
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/bg_status_submitted.xml"
     },
@@ -80,6 +76,14 @@
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/ic_profile_info.xml"
     },
     {
+        "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_ic_eye_off.xml.flat",
+        "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/ic_eye_off.xml"
+    },
+    {
+        "merged": "com.csu.census.app-debug-34:/layout_activity_login.xml.flat",
+        "source": "com.csu.census.app-main-36:/layout/activity_login.xml"
+    },
+    {
         "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_bg_qa_white.xml.flat",
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/bg_qa_white.xml"
     },
@@ -136,12 +140,12 @@
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/ic_house_small.xml"
     },
     {
-        "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/menu_bottom_nav.xml.flat",
-        "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/menu/bottom_nav.xml"
+        "merged": "com.csu.census.app-debug-34:/layout_activity_signup.xml.flat",
+        "source": "com.csu.census.app-main-36:/layout/activity_signup.xml"
     },
     {
-        "merged": "com.csu.census.app-debug-34:/drawable_ic_eye_off.xml.flat",
-        "source": "com.csu.census.app-main-36:/drawable/ic_eye_off.xml"
+        "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/menu_bottom_nav.xml.flat",
+        "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/menu/bottom_nav.xml"
     },
     {
         "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_ic_qa_leaderboard.xml.flat",
@@ -168,6 +172,10 @@
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/bg_card.xml"
     },
     {
+        "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_ic_eye.xml.flat",
+        "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/ic_eye.xml"
+    },
+    {
         "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_ic_chevron.xml.flat",
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/ic_chevron.xml"
     },
@@ -188,11 +196,11 @@
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/layout/activity_signup.xml"
     },
     {
-        "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_ic_nav_home.xml.flat",
-        "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/ic_nav_home.xml"
-    },
-    {
         "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/layout_activity_login.xml.flat",
         "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-debug-34:/drawable_ic_nav_home.xml.flat",
+        "source": "/Users/r.ramakrishnan/.gradle/daemon/8.13/com.csu.census.app-main-36:/drawable/ic_nav_home.xml"
     }
 ]

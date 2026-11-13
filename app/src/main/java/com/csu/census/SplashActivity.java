@@ -26,7 +26,6 @@ public class SplashActivity extends AppCompatActivity {
 
         AppStore.seed(this);
 
-        // Always start on the login screen, even if a previous session exists.
         AppStore.signOut(this);
 
         ImageView logo = findViewById(R.id.splashLogo);

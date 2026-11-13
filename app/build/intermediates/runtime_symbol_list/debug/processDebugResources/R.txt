@@ -3172,6 +3172,7 @@ int id btnPrivacy 0x7f080062
 int id btnReset 0x7f080063
 int id btnSignOut 0x7f080064
 int id btnSubmissions 0x7f080065
+int id btnTogglePassword 0x7f080206
 int id btnViewHouseholds 0x7f080066
 int id buttonPanel 0x7f080067
 int id cancel_button 0x7f080068

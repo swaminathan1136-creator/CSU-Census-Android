@@ -3173,6 +3173,7 @@ id btnPrivacy
 id btnReset
 id btnSignOut
 id btnSubmissions
+id btnTogglePassword
 id btnViewHouseholds
 id buttonPanel
 id cancel_button
