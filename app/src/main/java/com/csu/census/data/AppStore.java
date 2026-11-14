@@ -1,4 +1,3 @@
-
 package com.csu.census.data;
 
 import android.content.Context;
@@ -15,57 +14,37 @@ import java.util.Map;
 
 public final class AppStore {
 
-    private static final String PREFERENCES_NAME =
-            "csu_census_store";
-
-    private static final String KEY_ACTIVE_ID =
-            "active_id";
-
-    private static final String KEY_HOUSEHOLDS =
-            "households";
-
-    private static final String KEY_RECORDS =
-            "records";
+    private static final String PREFS = "csu_census_store";
+    private static final String KEY_ACTIVE_ID = "active_id";
+    private static final String KEY_HOUSEHOLDS = "households";
+    private static final String KEY_RECORDS = "records";
 
     private AppStore() {
     }
 
     private static SharedPreferences preferences(Context context) {
-
-        return context.getSharedPreferences(
-                PREFERENCES_NAME,
-                Context.MODE_PRIVATE
-        );
+        return context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
     }
 
     // --------------------------------------------------
-    // INITIAL SEEDING
+    // INITIAL DATA
     // --------------------------------------------------
 
     public static void seed(Context context) {
-
         SharedPreferences store = preferences(context);
 
         if (!store.getBoolean("seeded", false)) {
-
             try {
-
-                JSONObject demoAccount = new JSONObject();
-
-                demoAccount.put("name", "Demo Collector");
-                demoAccount.put("email", "demo@csu.org");
-                demoAccount.put("password", "Demo@1234");
+                JSONObject demo = new JSONObject();
+                demo.put("name", "Demo Collector");
+                demo.put("email", "demo@csu.org");
+                demo.put("password", "Demo@1234");
 
                 store.edit()
-                        .putString(
-                                "account_CSU001",
-                                demoAccount.toString()
-                        )
+                        .putString("account_CSU001", demo.toString())
                         .putBoolean("seeded", true)
                         .apply();
-
             } catch (Exception ignored) {
-                // The app can still open if seeding fails.
             }
         }
 
@@ -73,70 +52,40 @@ public final class AppStore {
     }
 
     private static void seedDemoHouseholdsIfNeeded(Context context) {
-
         SharedPreferences store = preferences(context);
 
         if (store.getBoolean("demo_households_seeded", false)) {
             return;
         }
 
-        try {
+        JSONArray current = readArray(context, KEY_HOUSEHOLDS);
 
-            JSONArray current = readArray(
-                    context,
-                    KEY_HOUSEHOLDS
-            );
+        if (current.length() == 0) {
+            JSONArray sample = new JSONArray();
 
-            if (current.length() == 0) {
+            sample.put(createSampleHousehold(
+                    "HH001", "Anita Sharma", "Sector 12",
+                    "01", 3, "Submitted"
+            ));
 
-                JSONArray sample = new JSONArray();
+            sample.put(createSampleHousehold(
+                    "HH002", "Ramesh Kumar", "Sector 15",
+                    "02", 4, "In Review"
+            ));
 
-                sample.put(createSampleHousehold(
-                        "HH001",
-                        "Anita Sharma",
-                        "Sector 12",
-                        "01",
-                        3,
-                        "Submitted"
-                ));
+            sample.put(createSampleHousehold(
+                    "HH003", "Priya Verma", "Sector 18",
+                    "03", 6, "Returned"
+            ));
 
-                sample.put(createSampleHousehold(
-                        "HH002",
-                        "Ramesh Kumar",
-                        "Sector 15",
-                        "02",
-                        4,
-                        "In Review"
-                ));
+            sample.put(createSampleHousehold(
+                    "HH004", "Suresh Singh", "Sector 21",
+                    "04", 3, "Submitted"
+            ));
 
-                sample.put(createSampleHousehold(
-                        "HH003",
-                        "Priya Verma",
-                        "Sector 18",
-                        "03",
-                        6,
-                        "Returned"
-                ));
-
-                sample.put(createSampleHousehold(
-                        "HH004",
-                        "Suresh Singh",
-                        "Sector 21",
-                        "04",
-                        3,
-                        "Submitted"
-                ));
-
-                store.edit()
-                        .putString(
-                                KEY_HOUSEHOLDS,
-                                sample.toString()
-                        )
-                        .apply();
-            }
-
-        } catch (Exception ignored) {
-            // Existing local data is never replaced by sample data.
+            store.edit()
+                    .putString(KEY_HOUSEHOLDS, sample.toString())
+                    .apply();
         }
 
         store.edit()
@@ -151,17 +100,19 @@ public final class AppStore {
             String ward,
             int members,
             String status
-    ) throws Exception {
-
+    ) {
         JSONObject household = new JSONObject();
 
-        household.put("id", id);
-        household.put("name", name);
-        household.put("address", address);
-        household.put("ward", ward);
-        household.put("members", members);
-        household.put("status", status);
-        household.put("date", formatDate("dd MMM yyyy"));
+        try {
+            household.put("id", id);
+            household.put("name", name);
+            household.put("address", address);
+            household.put("ward", ward);
+            household.put("members", members);
+            household.put("status", status);
+            household.put("date", formatDate("dd MMM yyyy"));
+        } catch (Exception ignored) {
+        }
 
         return household;
     }
@@ -177,36 +128,105 @@ public final class AppStore {
             String collectorId,
             String password
     ) {
+        if (context == null || name == null || email == null
+                || collectorId == null || password == null) {
+            return false;
+        }
 
         SharedPreferences store = preferences(context);
-
-        String accountKey = "account_" + collectorId;
+        String accountKey = "account_" + collectorId.trim();
 
         if (store.contains(accountKey)) {
             return false;
         }
 
         try {
-
             JSONObject account = new JSONObject();
-
-            account.put("name", name);
-            account.put("email", email);
+            account.put("name", name.trim());
+            account.put("email", email.trim());
             account.put("password", password);
 
             store.edit()
-                    .putString(
-                            accountKey,
-                            account.toString()
-                    )
+                    .putString(accountKey, account.toString())
                     .apply();
 
             return true;
-
         } catch (Exception exception) {
-
             return false;
         }
+    }
+
+    // Registration overload used by SignupActivity.
+    // The phone number is saved in the account profile.
+    public static boolean register(
+            Context context,
+            String name,
+            String email,
+            String phone,
+            String collectorId,
+            String password
+    ) {
+        if (context == null || name == null || email == null
+                || collectorId == null || password == null) {
+            return false;
+        }
+
+        if (emailExists(context, email)) {
+            return false;
+        }
+
+        SharedPreferences store = preferences(context);
+        String accountKey = "account_" + collectorId.trim();
+
+        if (store.contains(accountKey)) {
+            return false;
+        }
+
+        try {
+            JSONObject account = new JSONObject();
+            account.put("name", name.trim());
+            account.put("email", email.trim());
+            account.put("phone", phone == null ? "" : phone.trim());
+            account.put("password", password);
+
+            store.edit()
+                    .putString(accountKey, account.toString())
+                    .apply();
+
+            return true;
+        } catch (Exception exception) {
+            return false;
+        }
+    }
+
+    public static boolean emailExists(Context context, String email) {
+        if (context == null || email == null
+                || email.trim().isEmpty()) {
+            return false;
+        }
+
+        SharedPreferences store = preferences(context);
+
+        for (Map.Entry<String, ?> entry : store.getAll().entrySet()) {
+            if (!entry.getKey().startsWith("account_")) {
+                continue;
+            }
+
+            try {
+                JSONObject account = new JSONObject(
+                        String.valueOf(entry.getValue())
+                );
+
+                String savedEmail = account.optString("email", "");
+
+                if (email.trim().equalsIgnoreCase(savedEmail.trim())) {
+                    return true;
+                }
+            } catch (Exception ignored) {
+            }
+        }
+
+        return false;
     }
 
     // --------------------------------------------------
@@ -218,10 +238,12 @@ public final class AppStore {
             String collectorId,
             String password
     ) {
+        if (context == null || collectorId == null || password == null) {
+            return false;
+        }
 
         try {
-
-            String accountKey = "account_" + collectorId;
+            String accountKey = "account_" + collectorId.trim();
 
             String accountJson = preferences(context)
                     .getString(accountKey, "{}");
@@ -229,15 +251,13 @@ public final class AppStore {
             JSONObject account = new JSONObject(accountJson);
 
             if (password.equals(account.optString("password"))) {
-
                 preferences(context)
                         .edit()
-                        .putString(KEY_ACTIVE_ID, collectorId)
+                        .putString(KEY_ACTIVE_ID, collectorId.trim())
                         .apply();
 
                 return true;
             }
-
         } catch (Exception ignored) {
         }
 
@@ -253,27 +273,25 @@ public final class AppStore {
             String email,
             String newPassword
     ) {
+        if (context == null || email == null || newPassword == null) {
+            return false;
+        }
 
         SharedPreferences store = preferences(context);
 
-        Map<String, ?> allPreferences = store.getAll();
-
-        for (String key : allPreferences.keySet()) {
-
+        for (String key : store.getAll().keySet()) {
             if (!key.startsWith("account_")) {
                 continue;
             }
 
             try {
-
                 JSONObject account = new JSONObject(
                         store.getString(key, "{}")
                 );
 
-                String savedEmail = account.optString("email");
+                String savedEmail = account.optString("email", "");
 
-                if (email.equalsIgnoreCase(savedEmail)) {
-
+                if (email.trim().equalsIgnoreCase(savedEmail.trim())) {
                     account.put("password", newPassword);
 
                     store.edit()
@@ -282,7 +300,6 @@ public final class AppStore {
 
                     return true;
                 }
-
             } catch (Exception ignored) {
             }
         }
@@ -295,7 +312,6 @@ public final class AppStore {
     // --------------------------------------------------
 
     public static boolean isSignedIn(Context context) {
-
         String id = preferences(context)
                 .getString(KEY_ACTIVE_ID, null);
 
@@ -305,49 +321,11 @@ public final class AppStore {
     }
 
     public static String activeId(Context context) {
-
         return preferences(context)
                 .getString(KEY_ACTIVE_ID, null);
     }
 
-    // --------------------------------------------------
-    // PROFILE
-    // --------------------------------------------------
-
-    public static String profile(
-            Context context,
-            String field
-    ) {
-
-        try {
-
-            String id = activeId(context);
-
-            if (id == null || id.trim().isEmpty()) {
-                return "Collector";
-            }
-
-            String accountKey = "account_" + id;
-
-            String accountJson = preferences(context)
-                    .getString(accountKey, "{}");
-
-            JSONObject account = new JSONObject(accountJson);
-
-            return account.optString(field, "Collector");
-
-        } catch (Exception exception) {
-
-            return "Collector";
-        }
-    }
-
-    // --------------------------------------------------
-    // LOGOUT
-    // --------------------------------------------------
-
     public static void signOut(Context context) {
-
         preferences(context)
                 .edit()
                 .remove(KEY_ACTIVE_ID)
@@ -355,48 +333,64 @@ public final class AppStore {
     }
 
     // --------------------------------------------------
-    // JSON STORAGE HELPER
+    // PROFILE
     // --------------------------------------------------
 
-    private static JSONArray readArray(
-            Context context,
-            String key
-    ) {
-
+    public static String profile(Context context, String field) {
         try {
+            String id = activeId(context);
 
-            String json = preferences(context)
-                    .getString(key, "[]");
+            if (id == null || id.trim().isEmpty()) {
+                return "Collector";
+            }
 
-            return new JSONArray(json);
+            JSONObject account = new JSONObject(
+                    preferences(context).getString(
+                            "account_" + id,
+                            "{}"
+                    )
+            );
 
+            return account.optString(field, "Collector");
         } catch (Exception exception) {
-
-            return new JSONArray();
+            return "Collector";
         }
     }
 
     // --------------------------------------------------
-    // GET ALL HOUSEHOLDS
+    // JSON STORAGE
     // --------------------------------------------------
 
-    public static ArrayList<JSONObject> households(
-            Context context
+    private static JSONArray readArray(Context context, String key) {
+        try {
+            String json = preferences(context).getString(key, "[]");
+            return new JSONArray(json);
+        } catch (Exception exception) {
+            return new JSONArray();
+        }
+    }
+
+    private static void saveArray(
+            Context context,
+            String key,
+            JSONArray array
     ) {
+        preferences(context)
+                .edit()
+                .putString(key, array.toString())
+                .apply();
+    }
 
-        JSONArray savedHouseholds = readArray(
-                context,
-                KEY_HOUSEHOLDS
-        );
+    // --------------------------------------------------
+    // HOUSEHOLDS
+    // --------------------------------------------------
 
+    public static ArrayList<JSONObject> households(Context context) {
+        JSONArray saved = readArray(context, KEY_HOUSEHOLDS);
         ArrayList<JSONObject> result = new ArrayList<>();
 
-        for (int index = 0;
-             index < savedHouseholds.length();
-             index++) {
-
-            JSONObject household =
-                    savedHouseholds.optJSONObject(index);
+        for (int i = 0; i < saved.length(); i++) {
+            JSONObject household = saved.optJSONObject(i);
 
             if (household != null) {
                 result.add(household);
@@ -406,41 +400,21 @@ public final class AppStore {
         return result;
     }
 
-    // --------------------------------------------------
-    // GET ONE HOUSEHOLD BY ID
-    // --------------------------------------------------
-
     public static JSONObject getHousehold(
             Context context,
             String householdId
     ) {
-
-        if (context == null
-                || householdId == null
-                || householdId.trim().isEmpty()) {
-
+        if (context == null || householdId == null) {
             return null;
         }
 
-        JSONArray savedHouseholds = readArray(
-                context,
-                KEY_HOUSEHOLDS
-        );
+        JSONArray saved = readArray(context, KEY_HOUSEHOLDS);
 
-        for (int index = 0;
-             index < savedHouseholds.length();
-             index++) {
+        for (int i = 0; i < saved.length(); i++) {
+            JSONObject household = saved.optJSONObject(i);
 
-            JSONObject household =
-                    savedHouseholds.optJSONObject(index);
-
-            if (household == null) {
-                continue;
-            }
-
-            String savedId = household.optString("id", "");
-
-            if (householdId.equals(savedId)) {
+            if (household != null
+                    && householdId.equals(household.optString("id"))) {
                 return household;
             }
         }
@@ -448,24 +422,77 @@ public final class AppStore {
         return null;
     }
 
-    // --------------------------------------------------
-    // ADD HOUSEHOLD
-    // --------------------------------------------------
-
     public static void addHousehold(
             Context context,
             String name,
             String address,
             int members
     ) {
+        addHousehold(context, name, address, "Not assigned", members);
+    }
 
-        addHousehold(
-                context,
-                name,
-                address,
-                "Not assigned",
-                members
-        );
+    // Used by AddHouseholdActivity.
+    public static void addHousehold(
+            Context context,
+            String name,
+            String address,
+            int members,
+            String phone,
+            String notes
+    ) {
+        JSONArray saved = readArray(context, KEY_HOUSEHOLDS);
+
+        try {
+            JSONObject household = new JSONObject();
+
+            household.put("id", generateHouseholdId(saved));
+            household.put("name", name);
+            household.put("address", address);
+            household.put("ward", "Not assigned");
+            household.put("members", members);
+            household.put("phone", phone == null ? "" : phone);
+            household.put("notes", notes == null ? "" : notes);
+            household.put("status", "Draft");
+            household.put("date", formatDate("dd MMM yyyy"));
+
+            saved.put(household);
+            saveArray(context, KEY_HOUSEHOLDS, saved);
+        } catch (Exception ignored) {
+        }
+    }
+
+    // Used by the Census Registration form in HouseholdsFragment.
+    public static void addHousehold(
+            Context context,
+            String name,
+            String address,
+            String ward,
+            JSONArray familyMembers
+    ) {
+        JSONArray saved = readArray(context, KEY_HOUSEHOLDS);
+
+        try {
+            JSONObject household = new JSONObject();
+
+            int memberCount = familyMembers == null
+                    ? 0 : familyMembers.length();
+
+            household.put("id", generateHouseholdId(saved));
+            household.put("name", name);
+            household.put("address", address);
+            household.put("ward", ward);
+            household.put("members", memberCount);
+            household.put(
+                    "familyMembers",
+                    familyMembers == null ? new JSONArray() : familyMembers
+            );
+            household.put("status", "Draft");
+            household.put("date", formatDate("dd MMM yyyy"));
+
+            saved.put(household);
+            saveArray(context, KEY_HOUSEHOLDS, saved);
+        } catch (Exception ignored) {
+        }
     }
 
     public static void addHousehold(
@@ -475,23 +502,12 @@ public final class AppStore {
             String ward,
             int members
     ) {
-
-        JSONArray savedHouseholds = readArray(
-                context,
-                KEY_HOUSEHOLDS
-        );
+        JSONArray saved = readArray(context, KEY_HOUSEHOLDS);
 
         try {
-
             JSONObject household = new JSONObject();
 
-            String householdId = "HH-" + String.format(
-                    Locale.US,
-                    "%04d",
-                    savedHouseholds.length() + 1
-            );
-
-            household.put("id", householdId);
+            household.put("id", generateHouseholdId(saved));
             household.put("name", name);
             household.put("address", address);
             household.put("ward", ward);
@@ -499,19 +515,18 @@ public final class AppStore {
             household.put("status", "Draft");
             household.put("date", formatDate("dd MMM yyyy"));
 
-            savedHouseholds.put(household);
-
-            preferences(context)
-                    .edit()
-                    .putString(
-                            KEY_HOUSEHOLDS,
-                            savedHouseholds.toString()
-                    )
-                    .apply();
-
+            saved.put(household);
+            saveArray(context, KEY_HOUSEHOLDS, saved);
         } catch (Exception ignored) {
-            // Do not crash the UI if local JSON cannot be updated.
         }
+    }
+
+    private static String generateHouseholdId(JSONArray saved) {
+        return "HH-" + String.format(
+                Locale.US,
+                "%04d",
+                saved.length() + 1
+        );
     }
 
     // --------------------------------------------------
@@ -522,103 +537,59 @@ public final class AppStore {
             Context context,
             String householdId
     ) {
-
-        JSONArray savedHouseholds = readArray(
-                context,
-                KEY_HOUSEHOLDS
-        );
-
-        JSONArray savedRecords = readArray(
-                context,
-                KEY_RECORDS
-        );
+        JSONArray savedHouseholds = readArray(context, KEY_HOUSEHOLDS);
+        JSONArray savedRecords = readArray(context, KEY_RECORDS);
 
         try {
-
-            for (int index = 0;
-                 index < savedHouseholds.length();
-                 index++) {
-
+            for (int i = 0; i < savedHouseholds.length(); i++) {
                 JSONObject household =
-                        savedHouseholds.getJSONObject(index);
+                        savedHouseholds.optJSONObject(i);
 
-                String currentId = household.optString("id");
-
-                if (!householdId.equals(currentId)) {
+                if (household == null
+                        || !householdId.equals(household.optString("id"))) {
                     continue;
                 }
 
-                if ("Submitted".equals(
-                        household.optString("status")
-                )) {
+                if ("Submitted".equalsIgnoreCase(
+                        household.optString("status"))) {
                     break;
                 }
 
                 household.put("status", "Submitted");
-
                 household.put(
                         "submittedAt",
                         formatDate("dd MMM yyyy, hh:mm a")
                 );
 
                 JSONObject record = new JSONObject();
-
                 record.put("id", householdId);
-
-                record.put(
-                        "name",
-                        household.optString("name")
-                );
-
+                record.put("name", household.optString("name"));
                 record.put(
                         "date",
                         formatDate("dd MMM yyyy, hh:mm a")
                 );
-
                 record.put("status", "Submitted");
 
                 savedRecords.put(record);
-
                 break;
             }
 
-            preferences(context)
-                    .edit()
-                    .putString(
-                            KEY_HOUSEHOLDS,
-                            savedHouseholds.toString()
-                    )
-                    .putString(
-                            KEY_RECORDS,
-                            savedRecords.toString()
-                    )
-                    .apply();
-
+            saveArray(context, KEY_HOUSEHOLDS, savedHouseholds);
+            saveArray(context, KEY_RECORDS, savedRecords);
         } catch (Exception ignored) {
         }
     }
 
     // --------------------------------------------------
-    // GET ALL RECORDS
+    // RECORDS
     // --------------------------------------------------
 
-    public static ArrayList<JSONObject> records(
-            Context context
-    ) {
-
-        JSONArray savedRecords = readArray(
-                context,
-                KEY_RECORDS
-        );
-
+    public static ArrayList<JSONObject> records(Context context) {
+        JSONArray saved = readArray(context, KEY_RECORDS);
         ArrayList<JSONObject> result = new ArrayList<>();
 
-        for (int index = 0;
-             index < savedRecords.length();
-             index++) {
-
-            JSONObject record =
-                    savedRecords.optJSONObject(index);
+        for (int i = 0; i < saved.length(); i++) {
+            JSONObject record = saved.optJSONObject(i);
 
             if (record != null) {
                 result.add(record);
@@ -629,22 +600,15 @@ public final class AppStore {
     }
 
     // --------------------------------------------------
-    // COUNT HOUSEHOLDS BY STATUS
+    // STATUS COUNTS
     // --------------------------------------------------
 
-    public static int countStatus(
-            Context context,
-            String status
-    ) {
-
+    public static int countStatus(Context context, String status) {
         int count = 0;
 
         for (JSONObject household : households(context)) {
-
             if (status.equalsIgnoreCase(
-                    household.optString("status", "Draft").trim()
-            )) {
-
+                    household.optString("status", "Draft").trim())) {
                 count++;
             }
         }
@@ -657,12 +621,10 @@ public final class AppStore {
     // --------------------------------------------------
 
     private static String formatDate(String pattern) {
-
-        SimpleDateFormat formatter =
-                new SimpleDateFormat(
-                        pattern,
-                        Locale.getDefault()
-                );
+        SimpleDateFormat formatter = new SimpleDateFormat(
+                pattern,
+                Locale.getDefault()
+        );
 
         return formatter.format(new Date());
     }
