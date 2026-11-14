@@ -2992,6 +2992,7 @@ drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_nav_home
 drawable ic_nav_households
+drawable ic_nav_leaderboard
 drawable ic_nav_profile
 drawable ic_nav_records
 drawable ic_profile_cert
@@ -3390,8 +3391,8 @@ id mtrl_view_tag_bottom_padding
 id multiply
 id nav_home
 id nav_households
+id nav_leaderboard
 id nav_profile
-id nav_records
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -3565,7 +3566,6 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
-id tvAddress
 id tvAvatar
 id tvBackLogin
 id tvCampaignPercent
@@ -3583,6 +3583,11 @@ id tvDetailStatus
 id tvDetailTitle
 id tvForgot
 id tvGreeting
+id tvHouseholdAddress
+id tvHouseholdMeta
+id tvHouseholdName
+id tvHouseholdReference
+id tvHouseholdStatus
 id tvHouseholds
 id tvMeta
 id tvProfileAvatar
@@ -3755,6 +3760,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout fragment_dashboard
 layout fragment_households
+layout fragment_leaderboard
 layout fragment_profile
 layout fragment_records
 layout ime_base_split_test_activity
@@ -3981,8 +3987,8 @@ string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string nav_home
 string nav_households
+string nav_leaderboard
 string nav_profile
-string nav_records
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through

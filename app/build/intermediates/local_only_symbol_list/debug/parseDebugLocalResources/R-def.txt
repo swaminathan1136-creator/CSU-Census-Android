@@ -63,6 +63,7 @@ drawable ic_eye_off
 drawable ic_house_small
 drawable ic_nav_home
 drawable ic_nav_households
+drawable ic_nav_leaderboard
 drawable ic_nav_profile
 drawable ic_nav_records
 drawable ic_profile_cert
@@ -111,15 +112,14 @@ id fragmentContainer
 id mainRoot
 id nav_home
 id nav_households
+id nav_leaderboard
 id nav_profile
-id nav_records
 id progressBar
 id recyclerHouseholds
 id recyclerRecords
 id splashLogo
 id splashSubtitle
 id splashTitle
-id tvAddress
 id tvAvatar
 id tvBackLogin
 id tvCampaignPercent
@@ -137,6 +137,11 @@ id tvDetailStatus
 id tvDetailTitle
 id tvForgot
 id tvGreeting
+id tvHouseholdAddress
+id tvHouseholdMeta
+id tvHouseholdName
+id tvHouseholdReference
+id tvHouseholdStatus
 id tvHouseholds
 id tvMeta
 id tvProfileAvatar
@@ -161,6 +166,7 @@ layout activity_signup
 layout activity_splash
 layout fragment_dashboard
 layout fragment_households
+layout fragment_leaderboard
 layout fragment_profile
 layout fragment_records
 layout item_household
@@ -169,7 +175,7 @@ menu bottom_nav
 string app_name
 string nav_home
 string nav_households
+string nav_leaderboard
 string nav_profile
-string nav_records
 style Theme.CSUCensus
 style Theme.CSUCensus.Splash

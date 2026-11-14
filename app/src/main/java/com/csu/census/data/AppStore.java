@@ -1,3 +1,4 @@
+
 package com.csu.census.data;
 
 import android.content.Context;
@@ -10,238 +11,659 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 
 public final class AppStore {
 
-    private static final String PREFS = "csu_census_store";
-    private static final String KEY_ACTIVE_ID = "active_id";
-    private static final String KEY_HOUSEHOLDS = "households";
-    private static final String KEY_RECORDS = "records";
+    private static final String PREFERENCES_NAME =
+            "csu_census_store";
 
-    private AppStore() {}
+    private static final String KEY_ACTIVE_ID =
+            "active_id";
 
-    private static SharedPreferences prefs(Context c) {
-        return c.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+    private static final String KEY_HOUSEHOLDS =
+            "households";
+
+    private static final String KEY_RECORDS =
+            "records";
+
+    private AppStore() {
     }
+
+    private static SharedPreferences preferences(Context context) {
+
+        return context.getSharedPreferences(
+                PREFERENCES_NAME,
+                Context.MODE_PRIVATE
+        );
+    }
+
+    // --------------------------------------------------
+    // INITIAL SEEDING
+    // --------------------------------------------------
 
     public static void seed(Context context) {
-        SharedPreferences store = prefs(context);
-        try {
-            JSONObject demo = new JSONObject();
-            demo.put("name", "Demo Collector");
-            demo.put("email", "demo@csu.org");
-            demo.put("phone", "+91 90000 00001");
-            demo.put("password", "1");
-            store.edit().putString("account_1", demo.toString()).apply();
 
-            String existing = store.getString(KEY_HOUSEHOLDS, "[]");
-            if (store.getBoolean("seeded", false) && existing != null && existing.length() > 2) {
-                return;
+        SharedPreferences store = preferences(context);
+
+        if (!store.getBoolean("seeded", false)) {
+
+            try {
+
+                JSONObject demoAccount = new JSONObject();
+
+                demoAccount.put("name", "Demo Collector");
+                demoAccount.put("email", "demo@csu.org");
+                demoAccount.put("password", "Demo@1234");
+
+                store.edit()
+                        .putString(
+                                "account_CSU001",
+                                demoAccount.toString()
+                        )
+                        .putBoolean("seeded", true)
+                        .apply();
+
+            } catch (Exception ignored) {
+                // The app can still open if seeding fails.
+            }
+        }
+
+        seedDemoHouseholdsIfNeeded(context);
+    }
+
+    private static void seedDemoHouseholdsIfNeeded(Context context) {
+
+        SharedPreferences store = preferences(context);
+
+        if (store.getBoolean("demo_households_seeded", false)) {
+            return;
+        }
+
+        try {
+
+            JSONArray current = readArray(
+                    context,
+                    KEY_HOUSEHOLDS
+            );
+
+            if (current.length() == 0) {
+
+                JSONArray sample = new JSONArray();
+
+                sample.put(createSampleHousehold(
+                        "HH001",
+                        "Anita Sharma",
+                        "Sector 12",
+                        "01",
+                        3,
+                        "Submitted"
+                ));
+
+                sample.put(createSampleHousehold(
+                        "HH002",
+                        "Ramesh Kumar",
+                        "Sector 15",
+                        "02",
+                        4,
+                        "In Review"
+                ));
+
+                sample.put(createSampleHousehold(
+                        "HH003",
+                        "Priya Verma",
+                        "Sector 18",
+                        "03",
+                        6,
+                        "Returned"
+                ));
+
+                sample.put(createSampleHousehold(
+                        "HH004",
+                        "Suresh Singh",
+                        "Sector 21",
+                        "04",
+                        3,
+                        "Submitted"
+                ));
+
+                store.edit()
+                        .putString(
+                                KEY_HOUSEHOLDS,
+                                sample.toString()
+                        )
+                        .apply();
             }
 
-            JSONArray households = new JSONArray();
-            households.put(hh("HH-0001", "Sharma Family", "12 MG Road, Sector 5, New Delhi", 4,
-                    "Submitted", "10 Nov 2026", "+91 98765 43210", "Primary contact: Rajesh Sharma."));
-            households.put(hh("HH-0002", "Patel Residence", "45 Lake View Apartments, Sector 12", 3,
-                    "Draft", "11 Nov 2026", "+91 91234 56789", "Follow-up required."));
-            households.put(hh("HH-0003", "Khan Household", "8 Park Street, Block B, South City", 5,
-                    "In Review", "11 Nov 2026", "+91 99887 76655", "Verification in progress."));
+        } catch (Exception ignored) {
+            // Existing local data is never replaced by sample data.
+        }
 
-            JSONArray records = new JSONArray();
-            JSONObject r1 = new JSONObject();
-            r1.put("id", "HH-0001");
-            r1.put("name", "Sharma Family");
-            r1.put("date", "10 Nov 2026, 04:30 PM");
-            r1.put("status", "Submitted");
-            records.put(r1);
+        store.edit()
+                .putBoolean("demo_households_seeded", true)
+                .apply();
+    }
+
+    private static JSONObject createSampleHousehold(
+            String id,
+            String name,
+            String address,
+            String ward,
+            int members,
+            String status
+    ) throws Exception {
+
+        JSONObject household = new JSONObject();
+
+        household.put("id", id);
+        household.put("name", name);
+        household.put("address", address);
+        household.put("ward", ward);
+        household.put("members", members);
+        household.put("status", status);
+        household.put("date", formatDate("dd MMM yyyy"));
+
+        return household;
+    }
+
+    // --------------------------------------------------
+    // REGISTRATION
+    // --------------------------------------------------
+
+    public static boolean register(
+            Context context,
+            String name,
+            String email,
+            String collectorId,
+            String password
+    ) {
+
+        SharedPreferences store = preferences(context);
+
+        String accountKey = "account_" + collectorId;
+
+        if (store.contains(accountKey)) {
+            return false;
+        }
+
+        try {
+
+            JSONObject account = new JSONObject();
+
+            account.put("name", name);
+            account.put("email", email);
+            account.put("password", password);
 
             store.edit()
-                    .putString(KEY_HOUSEHOLDS, households.toString())
-                    .putString(KEY_RECORDS, records.toString())
-                    .putBoolean("seeded", true)
+                    .putString(
+                            accountKey,
+                            account.toString()
+                    )
                     .apply();
-        } catch (Exception ignored) {}
-    }
 
-    private static JSONObject hh(String id, String name, String address, int members,
-                                 String status, String date, String phone, String notes) throws Exception {
-        JSONObject h = new JSONObject();
-        h.put("id", id);
-        h.put("name", name);
-        h.put("address", address);
-        h.put("members", members);
-        h.put("status", status);
-        h.put("date", date);
-        h.put("phone", phone);
-        h.put("notes", notes);
-        return h;
-    }
-
-    public static boolean register(Context c, String name, String email, String phone,
-                                   String collectorId, String password) {
-        SharedPreferences store = prefs(c);
-        String key = "account_" + collectorId;
-        if (store.contains(key)) return false;
-        try {
-            JSONObject a = new JSONObject();
-            a.put("name", name);
-            a.put("email", email);
-            a.put("phone", phone != null ? phone : "");
-            a.put("password", password);
-            store.edit().putString(key, a.toString()).apply();
             return true;
-        } catch (Exception e) {
+
+        } catch (Exception exception) {
+
             return false;
         }
     }
 
-    public static boolean signIn(Context c, String collectorId, String password) {
+    // --------------------------------------------------
+    // LOGIN
+    // --------------------------------------------------
+
+    public static boolean signIn(
+            Context context,
+            String collectorId,
+            String password
+    ) {
+
         try {
-            String json = prefs(c).getString("account_" + collectorId, "{}");
-            JSONObject a = new JSONObject(json);
-            if (password.equals(a.optString("password"))) {
-                prefs(c).edit().putString(KEY_ACTIVE_ID, collectorId).apply();
+
+            String accountKey = "account_" + collectorId;
+
+            String accountJson = preferences(context)
+                    .getString(accountKey, "{}");
+
+            JSONObject account = new JSONObject(accountJson);
+
+            if (password.equals(account.optString("password"))) {
+
+                preferences(context)
+                        .edit()
+                        .putString(KEY_ACTIVE_ID, collectorId)
+                        .apply();
+
                 return true;
             }
-        } catch (Exception ignored) {}
+
+        } catch (Exception ignored) {
+        }
+
         return false;
     }
 
-    public static boolean resetPassword(Context c, String email, String newPassword) {
-        SharedPreferences store = prefs(c);
-        for (String key : store.getAll().keySet()) {
-            if (!key.startsWith("account_")) continue;
+    // --------------------------------------------------
+    // PASSWORD RESET
+    // --------------------------------------------------
+
+    public static boolean resetPassword(
+            Context context,
+            String email,
+            String newPassword
+    ) {
+
+        SharedPreferences store = preferences(context);
+
+        Map<String, ?> allPreferences = store.getAll();
+
+        for (String key : allPreferences.keySet()) {
+
+            if (!key.startsWith("account_")) {
+                continue;
+            }
+
             try {
-                JSONObject a = new JSONObject(store.getString(key, "{}"));
-                if (email.equalsIgnoreCase(a.optString("email"))) {
-                    a.put("password", newPassword);
-                    store.edit().putString(key, a.toString()).apply();
+
+                JSONObject account = new JSONObject(
+                        store.getString(key, "{}")
+                );
+
+                String savedEmail = account.optString("email");
+
+                if (email.equalsIgnoreCase(savedEmail)) {
+
+                    account.put("password", newPassword);
+
+                    store.edit()
+                            .putString(key, account.toString())
+                            .apply();
+
                     return true;
                 }
-            } catch (Exception ignored) {}
+
+            } catch (Exception ignored) {
+            }
         }
+
         return false;
     }
 
-    public static boolean emailExists(Context c, String email) {
-        SharedPreferences store = prefs(c);
-        for (String key : store.getAll().keySet()) {
-            if (!key.startsWith("account_")) continue;
-            try {
-                JSONObject a = new JSONObject(store.getString(key, "{}"));
-                if (email.equalsIgnoreCase(a.optString("email"))) return true;
-            } catch (Exception ignored) {}
-        }
-        return false;
+    // --------------------------------------------------
+    // SESSION MANAGEMENT
+    // --------------------------------------------------
+
+    public static boolean isSignedIn(Context context) {
+
+        String id = preferences(context)
+                .getString(KEY_ACTIVE_ID, null);
+
+        return id != null
+                && !id.trim().isEmpty()
+                && preferences(context).contains("account_" + id);
     }
 
-    public static String activeId(Context c) {
-        return prefs(c).getString(KEY_ACTIVE_ID, "1");
+    public static String activeId(Context context) {
+
+        return preferences(context)
+                .getString(KEY_ACTIVE_ID, null);
     }
 
-    public static String profile(Context c, String field) {
+    // --------------------------------------------------
+    // PROFILE
+    // --------------------------------------------------
+
+    public static String profile(
+            Context context,
+            String field
+    ) {
+
         try {
-            String json = prefs(c).getString("account_" + activeId(c), "{}");
-            return new JSONObject(json).optString(field, "Collector");
-        } catch (Exception e) {
+
+            String id = activeId(context);
+
+            if (id == null || id.trim().isEmpty()) {
+                return "Collector";
+            }
+
+            String accountKey = "account_" + id;
+
+            String accountJson = preferences(context)
+                    .getString(accountKey, "{}");
+
+            JSONObject account = new JSONObject(accountJson);
+
+            return account.optString(field, "Collector");
+
+        } catch (Exception exception) {
+
             return "Collector";
         }
     }
 
-    public static void signOut(Context c) {
-        prefs(c).edit().remove(KEY_ACTIVE_ID).apply();
+    // --------------------------------------------------
+    // LOGOUT
+    // --------------------------------------------------
+
+    public static void signOut(Context context) {
+
+        preferences(context)
+                .edit()
+                .remove(KEY_ACTIVE_ID)
+                .apply();
     }
 
-    private static JSONArray readArray(Context c, String key) {
+    // --------------------------------------------------
+    // JSON STORAGE HELPER
+    // --------------------------------------------------
+
+    private static JSONArray readArray(
+            Context context,
+            String key
+    ) {
+
         try {
-            return new JSONArray(prefs(c).getString(key, "[]"));
-        } catch (Exception e) {
+
+            String json = preferences(context)
+                    .getString(key, "[]");
+
+            return new JSONArray(json);
+
+        } catch (Exception exception) {
+
             return new JSONArray();
         }
     }
 
-    public static ArrayList<JSONObject> households(Context c) {
-        JSONArray arr = readArray(c, KEY_HOUSEHOLDS);
-        ArrayList<JSONObject> list = new ArrayList<>();
-        for (int i = 0; i < arr.length(); i++) {
-            JSONObject o = arr.optJSONObject(i);
-            if (o != null) list.add(o);
+    // --------------------------------------------------
+    // GET ALL HOUSEHOLDS
+    // --------------------------------------------------
+
+    public static ArrayList<JSONObject> households(
+            Context context
+    ) {
+
+        JSONArray savedHouseholds = readArray(
+                context,
+                KEY_HOUSEHOLDS
+        );
+
+        ArrayList<JSONObject> result = new ArrayList<>();
+
+        for (int index = 0;
+             index < savedHouseholds.length();
+             index++) {
+
+            JSONObject household =
+                    savedHouseholds.optJSONObject(index);
+
+            if (household != null) {
+                result.add(household);
+            }
         }
-        return list;
+
+        return result;
     }
 
-    public static void addHousehold(Context c, String name, String address, int members,
-                                    String phone, String notes) {
-        JSONArray arr = readArray(c, KEY_HOUSEHOLDS);
-        try {
-            JSONObject h = new JSONObject();
-            h.put("id", "HH-" + String.format(Locale.US, "%04d", arr.length() + 1));
-            h.put("name", name);
-            h.put("address", address);
-            h.put("members", members);
-            h.put("status", "Draft");
-            h.put("date", formatDate("dd MMM yyyy"));
-            h.put("phone", phone != null ? phone : "");
-            h.put("notes", notes != null ? notes : "");
-            arr.put(h);
-            prefs(c).edit().putString(KEY_HOUSEHOLDS, arr.toString()).apply();
-        } catch (Exception ignored) {}
-    }
+    // --------------------------------------------------
+    // GET ONE HOUSEHOLD BY ID
+    // --------------------------------------------------
 
-    public static void addHousehold(Context c, String name, String address, int members) {
-        addHousehold(c, name, address, members, "", "");
-    }
+    public static JSONObject getHousehold(
+            Context context,
+            String householdId
+    ) {
 
-    public static JSONObject getHousehold(Context c, String householdId) {
-        for (JSONObject h : households(c)) {
-            if (householdId.equals(h.optString("id"))) return h;
+        if (context == null
+                || householdId == null
+                || householdId.trim().isEmpty()) {
+
+            return null;
         }
+
+        JSONArray savedHouseholds = readArray(
+                context,
+                KEY_HOUSEHOLDS
+        );
+
+        for (int index = 0;
+             index < savedHouseholds.length();
+             index++) {
+
+            JSONObject household =
+                    savedHouseholds.optJSONObject(index);
+
+            if (household == null) {
+                continue;
+            }
+
+            String savedId = household.optString("id", "");
+
+            if (householdId.equals(savedId)) {
+                return household;
+            }
+        }
+
         return null;
     }
 
-    public static void submitHousehold(Context c, String householdId) {
-        JSONArray households = readArray(c, KEY_HOUSEHOLDS);
-        JSONArray records = readArray(c, KEY_RECORDS);
+    // --------------------------------------------------
+    // ADD HOUSEHOLD
+    // --------------------------------------------------
+
+    public static void addHousehold(
+            Context context,
+            String name,
+            String address,
+            int members
+    ) {
+
+        addHousehold(
+                context,
+                name,
+                address,
+                "Not assigned",
+                members
+        );
+    }
+
+    public static void addHousehold(
+            Context context,
+            String name,
+            String address,
+            String ward,
+            int members
+    ) {
+
+        JSONArray savedHouseholds = readArray(
+                context,
+                KEY_HOUSEHOLDS
+        );
+
         try {
-            for (int i = 0; i < households.length(); i++) {
-                JSONObject h = households.getJSONObject(i);
-                if (!householdId.equals(h.optString("id"))) continue;
-                if ("Submitted".equals(h.optString("status"))) break;
-                h.put("status", "Submitted");
-                JSONObject r = new JSONObject();
-                r.put("id", householdId);
-                r.put("name", h.optString("name"));
-                r.put("date", formatDate("dd MMM yyyy, hh:mm a"));
-                r.put("status", "Submitted");
-                records.put(r);
+
+            JSONObject household = new JSONObject();
+
+            String householdId = "HH-" + String.format(
+                    Locale.US,
+                    "%04d",
+                    savedHouseholds.length() + 1
+            );
+
+            household.put("id", householdId);
+            household.put("name", name);
+            household.put("address", address);
+            household.put("ward", ward);
+            household.put("members", members);
+            household.put("status", "Draft");
+            household.put("date", formatDate("dd MMM yyyy"));
+
+            savedHouseholds.put(household);
+
+            preferences(context)
+                    .edit()
+                    .putString(
+                            KEY_HOUSEHOLDS,
+                            savedHouseholds.toString()
+                    )
+                    .apply();
+
+        } catch (Exception ignored) {
+            // Do not crash the UI if local JSON cannot be updated.
+        }
+    }
+
+    // --------------------------------------------------
+    // SUBMIT HOUSEHOLD
+    // --------------------------------------------------
+
+    public static void submitHousehold(
+            Context context,
+            String householdId
+    ) {
+
+        JSONArray savedHouseholds = readArray(
+                context,
+                KEY_HOUSEHOLDS
+        );
+
+        JSONArray savedRecords = readArray(
+                context,
+                KEY_RECORDS
+        );
+
+        try {
+
+            for (int index = 0;
+                 index < savedHouseholds.length();
+                 index++) {
+
+                JSONObject household =
+                        savedHouseholds.getJSONObject(index);
+
+                String currentId = household.optString("id");
+
+                if (!householdId.equals(currentId)) {
+                    continue;
+                }
+
+                if ("Submitted".equals(
+                        household.optString("status")
+                )) {
+                    break;
+                }
+
+                household.put("status", "Submitted");
+
+                household.put(
+                        "submittedAt",
+                        formatDate("dd MMM yyyy, hh:mm a")
+                );
+
+                JSONObject record = new JSONObject();
+
+                record.put("id", householdId);
+
+                record.put(
+                        "name",
+                        household.optString("name")
+                );
+
+                record.put(
+                        "date",
+                        formatDate("dd MMM yyyy, hh:mm a")
+                );
+
+                record.put("status", "Submitted");
+
+                savedRecords.put(record);
+
                 break;
             }
-            prefs(c).edit()
-                    .putString(KEY_HOUSEHOLDS, households.toString())
-                    .putString(KEY_RECORDS, records.toString())
+
+            preferences(context)
+                    .edit()
+                    .putString(
+                            KEY_HOUSEHOLDS,
+                            savedHouseholds.toString()
+                    )
+                    .putString(
+                            KEY_RECORDS,
+                            savedRecords.toString()
+                    )
                     .apply();
-        } catch (Exception ignored) {}
+
+        } catch (Exception ignored) {
+        }
     }
 
-    public static ArrayList<JSONObject> records(Context c) {
-        JSONArray arr = readArray(c, KEY_RECORDS);
-        ArrayList<JSONObject> list = new ArrayList<>();
-        for (int i = 0; i < arr.length(); i++) {
-            JSONObject o = arr.optJSONObject(i);
-            if (o != null) list.add(o);
+    // --------------------------------------------------
+    // GET ALL RECORDS
+    // --------------------------------------------------
+
+    public static ArrayList<JSONObject> records(
+            Context context
+    ) {
+
+        JSONArray savedRecords = readArray(
+                context,
+                KEY_RECORDS
+        );
+
+        ArrayList<JSONObject> result = new ArrayList<>();
+
+        for (int index = 0;
+             index < savedRecords.length();
+             index++) {
+
+            JSONObject record =
+                    savedRecords.optJSONObject(index);
+
+            if (record != null) {
+                result.add(record);
+            }
         }
-        return list;
+
+        return result;
     }
 
-    public static int countStatus(Context c, String status) {
-        int n = 0;
-        for (JSONObject h : households(c)) {
-            if (status.equals(h.optString("status"))) n++;
+    // --------------------------------------------------
+    // COUNT HOUSEHOLDS BY STATUS
+    // --------------------------------------------------
+
+    public static int countStatus(
+            Context context,
+            String status
+    ) {
+
+        int count = 0;
+
+        for (JSONObject household : households(context)) {
+
+            if (status.equalsIgnoreCase(
+                    household.optString("status", "Draft").trim()
+            )) {
+
+                count++;
+            }
         }
-        return n;
+
+        return count;
     }
+
+    // --------------------------------------------------
+    // DATE FORMATTER
+    // --------------------------------------------------
 
     private static String formatDate(String pattern) {
-        return new SimpleDateFormat(pattern, Locale.getDefault()).format(new Date());
+
+        SimpleDateFormat formatter =
+                new SimpleDateFormat(
+                        pattern,
+                        Locale.getDefault()
+                );
+
+        return formatter.format(new Date());
     }
 }

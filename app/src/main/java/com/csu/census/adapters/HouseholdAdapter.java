@@ -1,3 +1,4 @@
+
 package com.csu.census.adapters;
 
 import android.graphics.Color;
@@ -13,77 +14,108 @@ import com.csu.census.R;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class HouseholdAdapter extends RecyclerView.Adapter<HouseholdAdapter.VH> {
+public class HouseholdAdapter
+        extends RecyclerView.Adapter<HouseholdAdapter.Holder> {
 
     public interface Listener {
         void onClick(JSONObject household);
     }
 
-    private List<JSONObject> data;
+    private final List<JSONObject> households;
     private final Listener listener;
 
-    public HouseholdAdapter(List<JSONObject> data, Listener listener) {
-        this.data = data != null ? data : new ArrayList<>();
+    public HouseholdAdapter(
+            List<JSONObject> households,
+            Listener listener
+    ) {
+        this.households = households;
         this.listener = listener;
-    }
-
-    public void update(List<JSONObject> list) {
-        data = list != null ? list : new ArrayList<>();
-        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new VH(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_household, parent, false));
+    public Holder onCreateViewHolder(
+            @NonNull ViewGroup parent,
+            int viewType
+    ) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_household, parent, false);
+
+        return new Holder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VH h, int position) {
-        JSONObject o = data.get(position);
-        h.title.setText(o.optString("id") + " · " + o.optString("name"));
-        h.address.setText(o.optString("address"));
-        String status = o.optString("status");
-        h.status.setText(status);
-        switch (status) {
-            case "Submitted":
-                h.status.setBackgroundResource(R.drawable.bg_status_submitted);
-                h.status.setTextColor(Color.parseColor("#1F8A5B"));
-                break;
-            case "In Review":
-                h.status.setBackgroundResource(R.drawable.bg_status_review);
-                h.status.setTextColor(Color.parseColor("#C4781A"));
-                break;
-            case "Returned":
-                h.status.setBackgroundResource(R.drawable.bg_status_returned);
-                h.status.setTextColor(Color.parseColor("#C44A5A"));
-                break;
-            default:
-                h.status.setBackgroundResource(R.drawable.bg_status_draft);
-                h.status.setTextColor(Color.parseColor("#5A6A7E"));
+    public void onBindViewHolder(
+            @NonNull Holder holder,
+            int position
+    ) {
+        JSONObject household = households.get(position);
+
+        String name = household.optString("name", "Household");
+        String id = household.optString("id", "");
+        String address = household.optString("address", "");
+        String ward = household.optString("ward", "-");
+        String status = household.optString("status", "Draft");
+        int members = household.optInt("members", 0);
+
+        holder.name.setText(name);
+        holder.reference.setText(id);
+        holder.address.setText(address);
+        holder.meta.setText(
+                "Ward: " + ward + "     " + members + " Members"
+        );
+        holder.status.setText(status);
+
+        int statusColor;
+        int statusBackground;
+
+        if (status.equalsIgnoreCase("Submitted")) {
+            statusColor = Color.rgb(0, 145, 105);
+            statusBackground = Color.rgb(224, 245, 237);
+        } else if (status.equalsIgnoreCase("In Review")) {
+            statusColor = Color.rgb(230, 123, 35);
+            statusBackground = Color.rgb(255, 240, 224);
+        } else if (status.equalsIgnoreCase("Returned")) {
+            statusColor = Color.rgb(222, 70, 105);
+            statusBackground = Color.rgb(255, 232, 239);
+        } else {
+            statusColor = Color.rgb(0, 102, 196);
+            statusBackground = Color.rgb(224, 239, 253);
         }
-        h.itemView.setOnClickListener(v -> {
-            if (listener != null) listener.onClick(o);
+
+        holder.status.setTextColor(statusColor);
+        holder.status.setBackgroundColor(statusBackground);
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onClick(household);
+            }
         });
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return households.size();
     }
 
-    static class VH extends RecyclerView.ViewHolder {
-        TextView title, address, status;
+    static class Holder extends RecyclerView.ViewHolder {
 
-        VH(View v) {
-            super(v);
-            title = v.findViewById(R.id.tvTitle);
-            address = v.findViewById(R.id.tvAddress);
-            status = v.findViewById(R.id.tvStatus);
+        TextView name;
+        TextView reference;
+        TextView address;
+        TextView meta;
+        TextView status;
+
+        Holder(@NonNull View itemView) {
+            super(itemView);
+
+            name = itemView.findViewById(R.id.tvHouseholdName);
+            reference = itemView.findViewById(R.id.tvHouseholdReference);
+            address = itemView.findViewById(R.id.tvHouseholdAddress);
+            meta = itemView.findViewById(R.id.tvHouseholdMeta);
+            status = itemView.findViewById(R.id.tvHouseholdStatus);
         }
     }
 }

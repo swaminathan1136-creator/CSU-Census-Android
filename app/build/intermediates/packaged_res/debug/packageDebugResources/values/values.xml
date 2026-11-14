@@ -31,8 +31,8 @@
     <string name="app_name">CSU Census</string>
     <string name="nav_home">Home</string>
     <string name="nav_households">Households</string>
+    <string name="nav_leaderboard">Leaderboard</string>
     <string name="nav_profile">Profile</string>
-    <string name="nav_records">Records</string>
     <style name="Theme.CSUCensus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/blue_dark</item>

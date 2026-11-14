@@ -2991,6 +2991,7 @@ int drawable ic_mtrl_chip_checked_circle 0x7f0700b5
 int drawable ic_mtrl_chip_close_circle 0x7f0700b6
 int drawable ic_nav_home 0x7f0700b7
 int drawable ic_nav_households 0x7f0700b8
+int drawable ic_nav_leaderboard 0x7f070112
 int drawable ic_nav_profile 0x7f0700b9
 int drawable ic_nav_records 0x7f0700ba
 int drawable ic_profile_cert 0x7f0700bb
@@ -3389,8 +3390,8 @@ int id mtrl_view_tag_bottom_padding 0x7f08012d
 int id multiply 0x7f08012e
 int id nav_home 0x7f08012f
 int id nav_households 0x7f080130
+int id nav_leaderboard 0x7f08021a
 int id nav_profile 0x7f080131
-int id nav_records 0x7f080132
 int id navigation_bar_item_active_indicator_view 0x7f080133
 int id navigation_bar_item_icon_container 0x7f080134
 int id navigation_bar_item_icon_view 0x7f080135
@@ -3564,7 +3565,6 @@ int id transition_position 0x7f0801dc
 int id transition_scene_layoutid_cache 0x7f0801dd
 int id transition_transform 0x7f0801de
 int id triangle 0x7f0801df
-int id tvAddress 0x7f0801e0
 int id tvAvatar 0x7f0801e1
 int id tvBackLogin 0x7f0801e2
 int id tvCampaignPercent 0x7f0801e3
@@ -3582,6 +3582,11 @@ int id tvDetailStatus 0x7f0801ee
 int id tvDetailTitle 0x7f080215
 int id tvForgot 0x7f0801f0
 int id tvGreeting 0x7f0801f1
+int id tvHouseholdAddress 0x7f08021b
+int id tvHouseholdMeta 0x7f08021c
+int id tvHouseholdName 0x7f08021d
+int id tvHouseholdReference 0x7f08021e
+int id tvHouseholdStatus 0x7f08021f
 int id tvHouseholds 0x7f0801f2
 int id tvMeta 0x7f0801f3
 int id tvProfileAvatar 0x7f080216
@@ -3754,6 +3759,7 @@ int layout design_text_input_end_icon 0x7f0b0034
 int layout design_text_input_start_icon 0x7f0b0035
 int layout fragment_dashboard 0x7f0b0036
 int layout fragment_households 0x7f0b0037
+int layout fragment_leaderboard 0x7f0b007b
 int layout fragment_profile 0x7f0b0038
 int layout fragment_records 0x7f0b0039
 int layout ime_base_split_test_activity 0x7f0b003a
@@ -3980,8 +3986,8 @@ int string mtrl_timepicker_cancel 0x7f0f0099
 int string mtrl_timepicker_confirm 0x7f0f009a
 int string nav_home 0x7f0f009b
 int string nav_households 0x7f0f009c
+int string nav_leaderboard 0x7f0f00ab
 int string nav_profile 0x7f0f009d
-int string nav_records 0x7f0f009e
 int string password_toggle_content_description 0x7f0f009f
 int string path_password_eye 0x7f0f00a0
 int string path_password_eye_mask_strike_through 0x7f0f00a1
