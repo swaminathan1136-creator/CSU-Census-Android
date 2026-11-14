@@ -1,6 +1,5 @@
 package com.csu.census.adapters;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,43 +12,34 @@ import com.csu.census.R;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.Holder> {
-
-    private final List<JSONObject> data;
+public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.VH> {
+    private List<JSONObject> data;
 
     public RecordAdapter(List<JSONObject> data) {
-        this.data = data;
+        this.data = data != null ? data : new ArrayList<>();
+    }
+
+    public void update(List<JSONObject> list) {
+        data = list != null ? list : new ArrayList<>();
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_record, parent, false);
-        return new Holder(itemView);
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new VH(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_record, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
-        JSONObject record = data.get(position);
-        holder.title.setText(record.optString("id") + " • " + record.optString("name"));
-        holder.meta.setText(record.optString("date"));
-
-        String status = record.optString("status", "Submitted");
-        holder.status.setText(status);
-
-        if ("Returned".equals(status)) {
-            holder.status.setBackgroundResource(R.drawable.bg_status_returned);
-            holder.status.setTextColor(Color.parseColor("#C44A5A"));
-        } else if ("In Review".equals(status)) {
-            holder.status.setBackgroundResource(R.drawable.bg_status_review);
-            holder.status.setTextColor(Color.parseColor("#C4781A"));
-        } else {
-            holder.status.setBackgroundResource(R.drawable.bg_status_submitted);
-            holder.status.setTextColor(Color.parseColor("#1F8A5B"));
-        }
+    public void onBindViewHolder(@NonNull VH h, int position) {
+        JSONObject o = data.get(position);
+        h.title.setText(o.optString("name"));
+        h.meta.setText(o.optString("id") + " · " + o.optString("date"));
+        h.status.setText(o.optString("status"));
     }
 
     @Override
@@ -57,16 +47,14 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.Holder> {
         return data.size();
     }
 
-    static class Holder extends RecyclerView.ViewHolder {
-        final TextView title;
-        final TextView meta;
-        final TextView status;
+    static class VH extends RecyclerView.ViewHolder {
+        TextView title, meta, status;
 
-        Holder(@NonNull View itemView) {
-            super(itemView);
-            title = itemView.findViewById(R.id.tvRecordTitle);
-            meta = itemView.findViewById(R.id.tvRecordMeta);
-            status = itemView.findViewById(R.id.tvRecordStatus);
+        VH(View v) {
+            super(v);
+            title = v.findViewById(R.id.tvTitle);
+            meta = v.findViewById(R.id.tvMeta);
+            status = v.findViewById(R.id.tvStatus);
         }
     }
 }

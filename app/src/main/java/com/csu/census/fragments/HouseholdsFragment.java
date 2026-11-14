@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,59 +17,34 @@ import com.csu.census.HouseholdDetailActivity;
 import com.csu.census.R;
 import com.csu.census.adapters.HouseholdAdapter;
 import com.csu.census.data.AppStore;
-
-import org.json.JSONObject;
-
-import java.util.ArrayList;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HouseholdsFragment extends Fragment {
-
     private HouseholdAdapter adapter;
-    private TextView emptyState;
-    private RecyclerView recyclerView;
 
     @Nullable
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState
-    ) {
-        View view = inflater.inflate(R.layout.fragment_households, container, false);
-
-        recyclerView = view.findViewById(R.id.rvHouseholds);
-        emptyState = view.findViewById(R.id.tvEmpty);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        adapter = new HouseholdAdapter(new ArrayList<>(), this::openDetail);
-        recyclerView.setAdapter(adapter);
-
-        view.findViewById(R.id.btnAddHousehold)
-                .setOnClickListener(v ->
-                        startActivity(new Intent(requireContext(), AddHouseholdActivity.class))
-                );
-
-        refreshList();
-        return view;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle s) {
+        View v = inflater.inflate(R.layout.fragment_households, container, false);
+        RecyclerView rv = v.findViewById(R.id.recyclerHouseholds);
+        rv.setLayoutManager(new LinearLayoutManager(requireContext()));
+        adapter = new HouseholdAdapter(AppStore.households(requireContext()), h -> {
+            Intent i = new Intent(requireContext(), HouseholdDetailActivity.class);
+            i.putExtra("household_id", h.optString("id"));
+            startActivity(i);
+        });
+        rv.setAdapter(adapter);
+        FloatingActionButton fab = v.findViewById(R.id.fabAdd);
+        if (fab != null) {
+            fab.setOnClickListener(b ->
+                    startActivity(new Intent(requireContext(), AddHouseholdActivity.class)));
+        }
+        return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        refreshList();
-    }
-
-    private void refreshList() {
-        ArrayList<JSONObject> list = AppStore.households(requireContext());
-        adapter.update(list);
-        boolean empty = list.isEmpty();
-        emptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
-        recyclerView.setVisibility(empty ? View.GONE : View.VISIBLE);
-    }
-
-    private void openDetail(JSONObject household) {
-        Intent intent = new Intent(requireContext(), HouseholdDetailActivity.class);
-        intent.putExtra("household_id", household.optString("id"));
-        startActivity(intent);
+        if (adapter != null) adapter.update(AppStore.households(requireContext()));
     }
 }

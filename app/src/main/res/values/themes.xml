@@ -20,33 +20,4 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
     </style>
-
-    <style name="ShapeAppearance.CSU" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
-
-    <style name="ShapeAppearance.CSU.Pill" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">18dp</item>
-    </style>
-
-    <style name="Widget.CSU.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/lavender</item>
-        <item name="android:width">64dp</item>
-        <item name="android:height">36dp</item>
-        <item name="marginHorizontal">4dp</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.CSU.Pill</item>
-    </style>
-
-    <style name="BottomNavTextActive" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">11sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/blue</item>
-    </style>
-
-    <style name="BottomNavTextInactive" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">11sp</item>
-        <item name="android:textColor">#8A9BB0</item>
-    </style>
 </resources>

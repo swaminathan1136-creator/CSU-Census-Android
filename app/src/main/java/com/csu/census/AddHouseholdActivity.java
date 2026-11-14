@@ -15,54 +15,43 @@ import androidx.core.view.WindowInsetsCompat;
 import com.csu.census.data.AppStore;
 
 public class AddHouseholdActivity extends AppCompatActivity {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    protected void onCreate(Bundle s) {
+        super.onCreate(s);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-
         setContentView(R.layout.activity_add_household);
-
         View root = findViewById(android.R.id.content);
         ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+            Insets b = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(b.left, b.top, b.right, b.bottom);
             return insets;
         });
-
-        EditText nameInput = findViewById(R.id.etHouseholdName);
-        EditText addressInput = findViewById(R.id.etAddress);
-        EditText membersInput = findViewById(R.id.etMembers);
-        EditText phoneInput = findViewById(R.id.etPhone);
-        EditText notesInput = findViewById(R.id.etNotes);
-
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
-
-        findViewById(R.id.btnSaveHousehold).setOnClickListener(v -> {
-            String name = nameInput.getText().toString().trim();
-            String address = addressInput.getText().toString().trim();
-            String membersStr = membersInput.getText().toString().trim();
-            String phone = phoneInput.getText().toString().trim();
-            String notes = notesInput.getText().toString().trim();
-
-            if (name.isEmpty() || address.isEmpty() || membersStr.isEmpty()) {
+        EditText name = findViewById(R.id.etName);
+        EditText address = findViewById(R.id.etAddress);
+        EditText members = findViewById(R.id.etMembers);
+        EditText phone = findViewById(R.id.etPhone);
+        EditText notes = findViewById(R.id.etNotes);
+        findViewById(R.id.btnSave).setOnClickListener(v -> {
+            String n = name.getText().toString().trim();
+            String a = address.getText().toString().trim();
+            String m = members.getText().toString().trim();
+            if (n.isEmpty() || a.isEmpty() || m.isEmpty()) {
                 Toast.makeText(this, "Name, address and members are required", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            int members;
+            int count;
             try {
-                members = Integer.parseInt(membersStr);
-                if (members < 1) throw new NumberFormatException();
-            } catch (NumberFormatException e) {
-                Toast.makeText(this, "Enter a valid number of members", Toast.LENGTH_SHORT).show();
+                count = Integer.parseInt(m);
+            } catch (Exception e) {
+                Toast.makeText(this, "Enter a valid member count", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            AppStore.addHousehold(this, name, address, members, phone, notes);
-            Toast.makeText(this, "Household added as Draft", Toast.LENGTH_SHORT).show();
+            AppStore.addHousehold(this, n, a, count,
+                    phone.getText().toString().trim(),
+                    notes.getText().toString().trim());
+            Toast.makeText(this, "Household added", Toast.LENGTH_SHORT).show();
             finish();
         });
     }

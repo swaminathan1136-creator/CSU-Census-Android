@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainRoot"
     android:layout_width="match_parent"
@@ -17,18 +16,18 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="72dp"
         android:background="@drawable/bg_bottom_nav"
         android:elevation="12dp"
-        android:outlineProvider="bounds"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         app:menu="@menu/bottom_nav"
         app:labelVisibilityMode="labeled"
         app:itemIconSize="24dp"
         app:itemIconTint="@color/bottom_nav_color"
         app:itemTextColor="@color/bottom_nav_color"
-        app:itemRippleColor="#33E6DEF6"
-        app:itemActiveIndicatorStyle="@style/Widget.CSU.BottomNav.ActiveIndicator"
-        app:itemPaddingTop="8dp"
-        app:itemPaddingBottom="8dp" />
-
+        app:itemRippleColor="@color/light_blue"
+        app:itemActiveIndicatorStyle="@null"
+        app:itemPaddingTop="6dp"
+        app:itemPaddingBottom="4dp" />
 </LinearLayout>

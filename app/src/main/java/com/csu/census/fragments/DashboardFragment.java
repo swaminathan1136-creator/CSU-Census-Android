@@ -19,117 +19,61 @@ import com.csu.census.R;
 import com.csu.census.data.AppStore;
 
 public class DashboardFragment extends Fragment {
-
     @Nullable
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState
-    ) {
-        View view = inflater.inflate(
-                R.layout.fragment_dashboard,
-                container,
-                false
-        );
-
-        bindCollectorHeader(view);
-        bindCampaignProgress(view);
-        bindActivityStatistics(view);
-        bindQuickActions(view);
-
-        return view;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle s) {
+        View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        bindHeader(v);
+        bindProgress(v);
+        bindStats(v);
+        bindActions(v);
+        return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        View currentView = getView();
-        if (currentView != null) {
-            bindCampaignProgress(currentView);
-            bindActivityStatistics(currentView);
+        View v = getView();
+        if (v != null) {
+            bindProgress(v);
+            bindStats(v);
         }
     }
 
-    private void bindCollectorHeader(View view) {
-        String collectorName = AppStore.profile(requireContext(), "name");
-
-        if (collectorName == null || collectorName.trim().isEmpty()) {
-            collectorName = "Collector";
-        }
-
-        String firstLetter = collectorName.trim()
-                .substring(0, 1)
-                .toUpperCase();
-
-        TextView nameView = view.findViewById(R.id.tvCollectorName);
-        TextView avatarView = view.findViewById(R.id.tvAvatar);
-        TextView greetingView = view.findViewById(R.id.tvGreeting);
-
-        greetingView.setText("Welcome back,");
-        nameView.setText(collectorName);
-        avatarView.setText(firstLetter);
+    private void bindHeader(View v) {
+        String name = AppStore.profile(requireContext(), "name");
+        if (name == null || name.trim().isEmpty()) name = "Collector";
+        ((TextView) v.findViewById(R.id.tvGreeting)).setText("Welcome back,");
+        ((TextView) v.findViewById(R.id.tvCollectorName)).setText(name);
+        ((TextView) v.findViewById(R.id.tvAvatar)).setText(name.trim().substring(0, 1).toUpperCase());
     }
 
-    private void bindCampaignProgress(View view) {
-        int totalHouseholds = AppStore.households(requireContext()).size();
-        int submittedHouseholds = AppStore.countStatus(requireContext(), "Submitted");
-
-        int progressPercent = totalHouseholds == 0
-                ? 0
-                : Math.round((submittedHouseholds * 100f) / totalHouseholds);
-
-        TextView countView = view.findViewById(R.id.tvProgressCount);
-        TextView percentView = view.findViewById(R.id.tvCampaignPercent);
-        ProgressBar progressBar = view.findViewById(R.id.progressBar);
-
-        countView.setText(submittedHouseholds + " of " + totalHouseholds + " households submitted");
-        percentView.setText(progressPercent + "%");
-        progressBar.setMax(100);
-        progressBar.setProgress(progressPercent);
-    }
-
-    private void bindActivityStatistics(View view) {
+    private void bindProgress(View v) {
         int total = AppStore.households(requireContext()).size();
         int submitted = AppStore.countStatus(requireContext(), "Submitted");
-        int inReview = AppStore.countStatus(requireContext(), "In Review");
-        int returned = AppStore.countStatus(requireContext(), "Returned");
-
-        ((TextView) view.findViewById(R.id.tvHouseholds)).setText(String.valueOf(total));
-        ((TextView) view.findViewById(R.id.tvSubmitted)).setText(String.valueOf(submitted));
-        ((TextView) view.findViewById(R.id.tvReview)).setText(String.valueOf(inReview));
-        ((TextView) view.findViewById(R.id.tvReturned)).setText(String.valueOf(returned));
+        int pct = total == 0 ? 0 : Math.round((submitted * 100f) / total);
+        ((TextView) v.findViewById(R.id.tvProgressCount)).setText(submitted + " of " + total + " households submitted");
+        ((TextView) v.findViewById(R.id.tvCampaignPercent)).setText(pct + "%");
+        ProgressBar bar = v.findViewById(R.id.progressBar);
+        bar.setMax(100);
+        bar.setProgress(pct);
     }
 
-    private void bindQuickActions(View view) {
+    private void bindStats(View v) {
+        ((TextView) v.findViewById(R.id.tvHouseholds)).setText(String.valueOf(AppStore.households(requireContext()).size()));
+        ((TextView) v.findViewById(R.id.tvSubmitted)).setText(String.valueOf(AppStore.countStatus(requireContext(), "Submitted")));
+        ((TextView) v.findViewById(R.id.tvReview)).setText(String.valueOf(AppStore.countStatus(requireContext(), "In Review")));
+        ((TextView) v.findViewById(R.id.tvReturned)).setText(String.valueOf(AppStore.countStatus(requireContext(), "Returned")));
+    }
 
-        // Add Household → opens the Add Household screen
-        view.findViewById(R.id.btnAddHousehold)
-                .setOnClickListener(button ->
-                        startActivity(new Intent(requireContext(), AddHouseholdActivity.class))
-                );
-
-        // View Households → switches bottom navigation to Households tab
-        view.findViewById(R.id.btnViewHouseholds)
-                .setOnClickListener(button ->
-                        ((MainActivity) requireActivity()).openTab(R.id.nav_households)
-                );
-
-        // Submissions / Records → switches bottom navigation to Records tab
-        view.findViewById(R.id.btnSubmissions)
-                .setOnClickListener(button ->
-                        ((MainActivity) requireActivity()).openTab(R.id.nav_records)
-                );
-
-        // Leaderboard (placeholder)
-        view.findViewById(R.id.btnLeaderboard)
-                .setOnClickListener(button ->
-                        Toast.makeText(
-                                requireContext(),
-                                "Leaderboard will be available when the CSU service is connected.",
-                                Toast.LENGTH_LONG
-                        ).show()
-                );
+    private void bindActions(View v) {
+        v.findViewById(R.id.btnAddHousehold).setOnClickListener(b ->
+                startActivity(new Intent(requireContext(), AddHouseholdActivity.class)));
+        v.findViewById(R.id.btnViewHouseholds).setOnClickListener(b ->
+                ((MainActivity) requireActivity()).openTab(R.id.nav_households));
+        v.findViewById(R.id.btnSubmissions).setOnClickListener(b ->
+                ((MainActivity) requireActivity()).openTab(R.id.nav_records));
+        v.findViewById(R.id.btnLeaderboard).setOnClickListener(b ->
+                Toast.makeText(requireContext(), "Leaderboard coming soon", Toast.LENGTH_SHORT).show());
     }
 }

@@ -1,69 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#F4F7FC</color>
-    <color name="blue">#2E6BE6</color>
-    <color name="blue_dark">#1B4DB3</color>
-    <color name="blue_tint">#DCE9FC</color>
+    <color name="background">#F2F6FA</color>
+    <color name="blue">#255DB0</color>
+    <color name="blue_dark">#1E4A8C</color>
     <color name="card">#FFFFFF</color>
-    <color name="cream">#F4F7FC</color>
-    <color name="green">#1FA971</color>
-    <color name="ink">#0B1F3A</color>
-    <color name="input_stroke">#D8E2F0</color>
-    <color name="lavender">#E6DEF6</color>
-    <color name="light_blue">#EAF1FD</color>
-    <color name="light_green">#E2F6ED</color>
-    <color name="line">#E4EBF5</color>
-    <color name="muted">#64748B</color>
-    <color name="nav_item_tint">#2E6BE6</color>
-    <color name="navy">#0B1F3A</color>
-    <color name="navy_light">#16324F</color>
-    <color name="orange">#F59E0B</color>
-    <color name="pink">#E05C7E</color>
-    <color name="progress_end">#0B1F3A</color>
-    <color name="progress_start">#2E6BE6</color>
-    <color name="purple">#7C5CE0</color>
-    <color name="red">#DC5A6E</color>
-    <color name="secondary_text">#64748B</color>
-    <color name="soft_blue">#EAF1FD</color>
-    <color name="soft_green">#E2F6ED</color>
+    <color name="cream">#F2F6FA</color>
+    <color name="green">#2A966B</color>
+    <color name="ink">#0E2542</color>
+    <color name="input_stroke">#E6F0FB</color>
+    <color name="light_blue">#E6F0FB</color>
+    <color name="line">#E6F0FB</color>
+    <color name="muted">#6E7A8C</color>
+    <color name="nav_inactive">#94A3B8</color>
+    <color name="navy">#0E2542</color>
+    <color name="navy_light">#1A3655</color>
+    <color name="orange">#F09136</color>
+    <color name="pink">#D96380</color>
+    <color name="progress_end">#0E2542</color>
+    <color name="progress_start">#255DB0</color>
+    <color name="purple">#6E59BA</color>
+    <color name="red">#D95368</color>
+    <color name="secondary_text">#6E7A8C</color>
+    <color name="soft_blue">#E6F0FB</color>
+    <color name="soft_green">#E3F4EC</color>
+    <color name="soft_orange">#FEF3E6</color>
     <color name="soft_pink">#FCEBF0</color>
     <color name="soft_purple">#F0ECFA</color>
     <color name="soft_red">#FCE8EC</color>
-    <color name="splash_fade">#A8C4E0</color>
     <color name="white">#FFFFFF</color>
     <string name="app_name">CSU Census</string>
-    <string name="collector_id">Collector ID</string>
-    <string name="create_account">Create New Account</string>
-    <string name="dashboard_title">Dashboard</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="households_title">Households</string>
-    <string name="login_subtitle">Sign in to continue your field work</string>
-    <string name="login_title">Welcome Back</string>
     <string name="nav_home">Home</string>
     <string name="nav_households">Households</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_records">Records</string>
-    <string name="password">Password</string>
-    <string name="profile_title">Profile</string>
-    <string name="records_title">Records</string>
-    <string name="sign_in">Sign In</string>
-    <style name="BottomNavTextActive" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">11sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/blue</item>
-    </style>
-    <style name="BottomNavTextInactive" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">11sp</item>
-        <item name="android:textColor">#8A9BB0</item>
-    </style>
-    <style name="ShapeAppearance.CSU" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
-    <style name="ShapeAppearance.CSU.Pill" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">18dp</item>
-    </style>
     <style name="Theme.CSUCensus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/blue_dark</item>
@@ -82,12 +51,5 @@
         <item name="android:navigationBarColor">@color/navy</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
-    </style>
-    <style name="Widget.CSU.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/lavender</item>
-        <item name="android:width">64dp</item>
-        <item name="android:height">36dp</item>
-        <item name="marginHorizontal">4dp</item>
-        <item name="shapeAppearance">@style/ShapeAppearance.CSU.Pill</item>
     </style>
 </resources>

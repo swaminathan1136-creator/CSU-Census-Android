@@ -16,34 +16,22 @@ import com.csu.census.adapters.RecordAdapter;
 import com.csu.census.data.AppStore;
 
 public class RecordsFragment extends Fragment {
+    private RecordAdapter adapter;
 
     @Nullable
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater,
-            @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState
-    ) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle s) {
+        View v = inflater.inflate(R.layout.fragment_records, container, false);
+        RecyclerView rv = v.findViewById(R.id.recyclerRecords);
+        rv.setLayoutManager(new LinearLayoutManager(requireContext()));
+        adapter = new RecordAdapter(AppStore.records(requireContext()));
+        rv.setAdapter(adapter);
+        return v;
+    }
 
-        View view = inflater.inflate(
-                R.layout.fragment_records,
-                container,
-                false
-        );
-
-        RecyclerView recordsRecyclerView = view.findViewById(R.id.rvRecords);
-        recordsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        RecordAdapter adapter = new RecordAdapter(AppStore.records(requireContext()));
-        recordsRecyclerView.setAdapter(adapter);
-
-        boolean isEmpty = adapter.getItemCount() == 0;
-
-        view.findViewById(R.id.tvRecordsEmpty)
-                .setVisibility(isEmpty ? View.VISIBLE : View.GONE);
-
-        recordsRecyclerView.setVisibility(isEmpty ? View.GONE : View.VISIBLE);
-
-        return view;
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (adapter != null) adapter.update(AppStore.records(requireContext()));
     }
 }

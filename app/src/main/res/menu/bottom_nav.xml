@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_nav_home"
-        android:title="Home" />
-    <item
-        android:id="@+id/nav_households"
-        android:icon="@drawable/ic_nav_households"
-        android:title="Households" />
-    <item
-        android:id="@+id/nav_records"
-        android:icon="@drawable/ic_nav_records"
-        android:title="Records" />
-    <item
-        android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_nav_profile"
-        android:title="Profile" />
+    <item android:id="@+id/nav_home" android:icon="@drawable/ic_nav_home" android:title="@string/nav_home" />
+    <item android:id="@+id/nav_households" android:icon="@drawable/ic_nav_households" android:title="@string/nav_households" />
+    <item android:id="@+id/nav_records" android:icon="@drawable/ic_nav_records" android:title="@string/nav_records" />
+    <item android:id="@+id/nav_profile" android:icon="@drawable/ic_nav_profile" android:title="@string/nav_profile" />
 </menu>

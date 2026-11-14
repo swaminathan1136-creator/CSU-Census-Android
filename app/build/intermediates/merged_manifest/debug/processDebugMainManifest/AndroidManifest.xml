@@ -22,7 +22,7 @@
         android:debuggable="true"
         android:extractNativeLibs="false"
         android:icon="@drawable/csu_logo"
-        android:label="CSU Census"
+        android:label="@string/app_name"
         android:roundIcon="@drawable/csu_logo"
         android:supportsRtl="true"
         android:testOnly="true"

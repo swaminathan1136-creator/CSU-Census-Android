@@ -16,68 +16,46 @@ import androidx.fragment.app.Fragment;
 
 import com.csu.census.fragments.DashboardFragment;
 import com.csu.census.fragments.HouseholdsFragment;
-import com.csu.census.fragments.RecordsFragment;
 import com.csu.census.fragments.ProfileFragment;
-
+import com.csu.census.fragments.RecordsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigation;
     private int currentTab = R.id.nav_home;
-    private boolean isProgrammaticSelect = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         getWindow().setNavigationBarColor(Color.WHITE);
-
         setContentView(R.layout.activity_main);
 
         View root = findViewById(R.id.mainRoot);
-        View fragmentContainer = findViewById(R.id.fragmentContainer);
+        View container = findViewById(R.id.fragmentContainer);
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
         ViewCompat.setOnApplyWindowInsetsListener(root, (v, insets) -> {
             Insets status = insets.getInsets(WindowInsetsCompat.Type.statusBars());
             Insets nav = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
-
-            fragmentContainer.setPadding(
-                    fragmentContainer.getPaddingLeft(),
-                    status.top,
-                    fragmentContainer.getPaddingRight(),
-                    fragmentContainer.getPaddingBottom()
-            );
-
+            container.setPadding(0, status.top, 0, 0);
             ViewGroup.MarginLayoutParams lp =
                     (ViewGroup.MarginLayoutParams) bottomNavigation.getLayoutParams();
             lp.bottomMargin = nav.bottom;
             bottomNavigation.setLayoutParams(lp);
-
             return insets;
         });
 
-        int[][] states = new int[][] {
-                new int[] { android.R.attr.state_checked },
-                new int[] { }
-        };
-        int[] colors = new int[] {
-                Color.parseColor("#255DB0"),
-                Color.parseColor("#94A3B8")
-        };
-        ColorStateList tint = new ColorStateList(states, colors);
+        ColorStateList tint = new ColorStateList(
+                new int[][]{new int[]{android.R.attr.state_checked}, new int[]{}},
+                new int[]{Color.parseColor("#255DB0"), Color.parseColor("#94A3B8")}
+        );
         bottomNavigation.setItemIconTintList(tint);
         bottomNavigation.setItemTextColor(tint);
 
         bottomNavigation.setOnItemSelectedListener(item -> {
-            if (isProgrammaticSelect) {
-                isProgrammaticSelect = false;
-                switchFragment(item.getItemId());
-                return true;
-            }
             switchFragment(item.getItemId());
             return true;
         });
@@ -85,59 +63,38 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             bottomNavigation.setSelectedItemId(R.id.nav_home);
         } else {
-            currentTab = savedInstanceState.getInt("currentTab", R.id.nav_home);
-            isProgrammaticSelect = true;
+            currentTab = savedInstanceState.getInt("tab", R.id.nav_home);
             bottomNavigation.setSelectedItemId(currentTab);
         }
     }
 
-    /**
-     * Public entry point used by quick actions / other fragments.
-     * Switches the fragment AND updates the bottom nav selection.
-     */
+    /** Quick actions call this – switches fragment AND selects bottom nav item. */
     public void openTab(int menuItemId) {
-        if (menuItemId == currentTab) {
+        if (bottomNavigation.getSelectedItemId() != menuItemId) {
+            bottomNavigation.setSelectedItemId(menuItemId);
+        } else {
             switchFragment(menuItemId);
-            return;
         }
-        isProgrammaticSelect = true;
-        bottomNavigation.setSelectedItemId(menuItemId);
     }
 
-    private void switchFragment(int menuItemId) {
-        Fragment selectedFragment;
-        String screenTitle;
-
-        if (menuItemId == R.id.nav_home) {
-            selectedFragment = new DashboardFragment();
-            screenTitle = "Dashboard";
-        } else if (menuItemId == R.id.nav_households) {
-            selectedFragment = new HouseholdsFragment();
-            screenTitle = "Households";
-        } else if (menuItemId == R.id.nav_records) {
-            selectedFragment = new RecordsFragment();
-            screenTitle = "Records";
-        } else if (menuItemId == R.id.nav_profile) {
-            selectedFragment = new ProfileFragment();
-            screenTitle = "Profile";
-        } else {
-            selectedFragment = new DashboardFragment();
-            screenTitle = "Dashboard";
-            menuItemId = R.id.nav_home;
+    private void switchFragment(int id) {
+        Fragment f;
+        if (id == R.id.nav_households) f = new HouseholdsFragment();
+        else if (id == R.id.nav_records) f = new RecordsFragment();
+        else if (id == R.id.nav_profile) f = new ProfileFragment();
+        else {
+            f = new DashboardFragment();
+            id = R.id.nav_home;
         }
-
-        currentTab = menuItemId;
-        setTitle(screenTitle);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragmentContainer, selectedFragment)
+        currentTab = id;
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainer, f)
                 .commit();
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt("currentTab", currentTab);
+        outState.putInt("tab", currentTab);
         super.onSaveInstanceState(outState);
     }
 }

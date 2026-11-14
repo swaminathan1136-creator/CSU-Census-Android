@@ -16,75 +16,59 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HouseholdAdapter extends RecyclerView.Adapter<HouseholdAdapter.Holder> {
+public class HouseholdAdapter extends RecyclerView.Adapter<HouseholdAdapter.VH> {
 
     public interface Listener {
-        void onClick(JSONObject item);
+        void onClick(JSONObject household);
     }
 
-    private final ArrayList<JSONObject> data;
+    private List<JSONObject> data;
     private final Listener listener;
 
     public HouseholdAdapter(List<JSONObject> data, Listener listener) {
-        this.data = new ArrayList<>(data);
+        this.data = data != null ? data : new ArrayList<>();
         this.listener = listener;
+    }
+
+    public void update(List<JSONObject> list) {
+        data = list != null ? list : new ArrayList<>();
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_household, parent, false);
-        return new Holder(itemView);
+    public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new VH(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_household, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
-        JSONObject household = data.get(position);
-
-        holder.name.setText(
-                household.optString("id") + " • " + household.optString("name")
-        );
-        holder.address.setText(household.optString("address"));
-
-        String status = household.optString("status");
-        int members = household.optInt("members");
-        holder.status.setText(status + "  ·  " + members + " members");
-
-        applyStatusStyle(holder.status, status);
-
-        holder.itemView.setOnClickListener(view -> {
-            if (listener != null) {
-                listener.onClick(household);
-            }
-        });
-    }
-
-    private void applyStatusStyle(TextView statusView, String status) {
+    public void onBindViewHolder(@NonNull VH h, int position) {
+        JSONObject o = data.get(position);
+        h.title.setText(o.optString("id") + " · " + o.optString("name"));
+        h.address.setText(o.optString("address"));
+        String status = o.optString("status");
+        h.status.setText(status);
         switch (status) {
             case "Submitted":
-                statusView.setBackgroundResource(R.drawable.bg_status_submitted);
-                statusView.setTextColor(Color.parseColor("#1F8A5B"));
+                h.status.setBackgroundResource(R.drawable.bg_status_submitted);
+                h.status.setTextColor(Color.parseColor("#1F8A5B"));
                 break;
             case "In Review":
-                statusView.setBackgroundResource(R.drawable.bg_status_review);
-                statusView.setTextColor(Color.parseColor("#C4781A"));
+                h.status.setBackgroundResource(R.drawable.bg_status_review);
+                h.status.setTextColor(Color.parseColor("#C4781A"));
                 break;
             case "Returned":
-                statusView.setBackgroundResource(R.drawable.bg_status_returned);
-                statusView.setTextColor(Color.parseColor("#C44A5A"));
+                h.status.setBackgroundResource(R.drawable.bg_status_returned);
+                h.status.setTextColor(Color.parseColor("#C44A5A"));
                 break;
             default:
-                statusView.setBackgroundResource(R.drawable.bg_status_draft);
-                statusView.setTextColor(Color.parseColor("#4A6FA5"));
-                break;
+                h.status.setBackgroundResource(R.drawable.bg_status_draft);
+                h.status.setTextColor(Color.parseColor("#5A6A7E"));
         }
-    }
-
-    public void update(List<JSONObject> items) {
-        data.clear();
-        data.addAll(items);
-        notifyDataSetChanged();
+        h.itemView.setOnClickListener(v -> {
+            if (listener != null) listener.onClick(o);
+        });
     }
 
     @Override
@@ -92,16 +76,14 @@ public class HouseholdAdapter extends RecyclerView.Adapter<HouseholdAdapter.Hold
         return data.size();
     }
 
-    static class Holder extends RecyclerView.ViewHolder {
-        final TextView name;
-        final TextView address;
-        final TextView status;
+    static class VH extends RecyclerView.ViewHolder {
+        TextView title, address, status;
 
-        Holder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.tvHouseholdName);
-            address = itemView.findViewById(R.id.tvHouseholdAddress);
-            status = itemView.findViewById(R.id.tvHouseholdStatus);
+        VH(View v) {
+            super(v);
+            title = v.findViewById(R.id.tvTitle);
+            address = v.findViewById(R.id.tvAddress);
+            status = v.findViewById(R.id.tvStatus);
         }
     }
 }

@@ -17,14 +17,11 @@ import com.csu.census.data.AppStore;
 import com.csu.census.ui.PasswordToggle;
 
 public class LoginActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-
         setContentView(R.layout.activity_login);
 
         View root = findViewById(android.R.id.content);
@@ -34,38 +31,32 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        EditText collectorIdInput = findViewById(R.id.etCollectorId);
-        EditText passwordInput = findViewById(R.id.etPassword);
+        EditText idInput = findViewById(R.id.etCollectorId);
+        EditText passInput = findViewById(R.id.etPassword);
+        PasswordToggle.bind(passInput, findViewById(R.id.btnTogglePassword));
 
-        PasswordToggle.bind(passwordInput, findViewById(R.id.btnTogglePassword));
-
-        findViewById(R.id.btnLogin).setOnClickListener(view -> {
-            String collectorId = collectorIdInput.getText().toString().trim();
-            String password = passwordInput.getText().toString();
-
-            if (collectorId.isEmpty() || password.isEmpty()) {
-                showToast("Enter your collector ID and password");
+        findViewById(R.id.btnLogin).setOnClickListener(v -> {
+            String id = idInput.getText().toString().trim();
+            String pass = passInput.getText().toString();
+            if (id.isEmpty() || pass.isEmpty()) {
+                toast("Enter collector ID and password");
                 return;
             }
-
-            if (AppStore.signIn(this, collectorId, password)) {
+            if (AppStore.signIn(this, id, pass)) {
                 startActivity(new Intent(this, MainActivity.class));
                 finish();
             } else {
-                showToast("Invalid collector ID or password");
+                toast("Invalid collector ID or password");
             }
         });
 
-        findViewById(R.id.tvCreateAccount).setOnClickListener(view ->
-                startActivity(new Intent(this, SignupActivity.class))
-        );
-
-        findViewById(R.id.tvForgot).setOnClickListener(view ->
-                startActivity(new Intent(this, ForgotPasswordActivity.class))
-        );
+        findViewById(R.id.tvCreateAccount).setOnClickListener(v ->
+                startActivity(new Intent(this, SignupActivity.class)));
+        findViewById(R.id.tvForgot).setOnClickListener(v ->
+                startActivity(new Intent(this, ForgotPasswordActivity.class)));
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    private void toast(String m) {
+        Toast.makeText(this, m, Toast.LENGTH_SHORT).show();
     }
 }

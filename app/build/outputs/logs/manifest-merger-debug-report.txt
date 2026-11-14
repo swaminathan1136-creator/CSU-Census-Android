@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-68:12
-INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-68:12
-INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-68:12
-INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-68:12
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:1-27:12
 MERGED from [com.google.android.material:material:1.12.0] /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/75f0b086794e37b6373adaedfd3cfe93/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.1] /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/079389c1a8f7fe85560efc130b8feda6/transformed/appcompat-resources-1.7.1/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/965448b2ba92daf2add80f5c144a2b45/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
@@ -56,12 +56,12 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/r.ramakri
 	xmlns:android
 		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:4:5-67
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:3:5-67
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:4:22-64
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:3:22-64
 application
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:6:5-66:19
-INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:6:5-66:19
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:4:5-26:19
+INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:4:5-26:19
 MERGED from [com.google.android.material:material:1.12.0] /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/75f0b086794e37b6373adaedfd3cfe93/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/75f0b086794e37b6373adaedfd3cfe93/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/965448b2ba92daf2add80f5c144a2b45/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -83,101 +83,101 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/r.ra
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.17.0] /Users/r.ramakrishnan/.gradle/caches/8.13/transforms/2bb3e3810c31e428ce7fca967a663d87/transformed/core-1.17.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:11:9-35
-	android:label
 		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:9:9-35
+	android:label
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:7:9-41
 	android:roundIcon
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:10:9-47
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:8:9-47
 	android:icon
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:8:9-42
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:6:9-42
 	android:allowBackup
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:7:9-35
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:5:9-35
 	android:theme
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:12:9-47
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:10:9-47
 activity#com.csu.census.SplashActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:14:9-22:20
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:11:9-16:20
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:16:13-36
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:11:50-73
 	android:theme
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:17:13-58
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:11:74-119
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:15:13-43
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:11:19-49
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:18:13-21:29
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:12:13-15:29
 action#android.intent.action.MAIN
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:19:17-69
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:13:17-69
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:19:25-66
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:13:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:20:17-77
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:14:17-77
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:20:27-74
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:14:27-74
 activity#com.csu.census.LoginActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:24:9-27:58
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:17:9-119
 	android:windowSoftInputMode
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:27:13-55
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:17:74-116
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:26:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:17:49-73
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:25:13-42
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:17:19-48
 activity#com.csu.census.SignupActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:29:9-32:58
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:18:9-120
 	android:windowSoftInputMode
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:32:13-55
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:18:75-117
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:31:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:18:50-74
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:30:13-43
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:18:19-49
 activity#com.csu.census.ForgotPasswordActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:34:9-37:58
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:19:9-128
 	android:windowSoftInputMode
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:37:13-55
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:19:83-125
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:36:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:19:58-82
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:35:13-51
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:19:19-57
 activity#com.csu.census.OtpVerifyActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:39:9-42:58
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:20:9-123
 	android:windowSoftInputMode
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:42:13-55
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:20:78-120
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:41:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:20:53-77
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:40:13-46
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:20:19-52
 activity#com.csu.census.NewPasswordActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:44:9-47:58
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:21:9-125
 	android:windowSoftInputMode
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:47:13-55
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:21:80-122
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:46:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:21:55-79
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:45:13-48
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:21:19-54
 activity#com.csu.census.MainActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:49:9-51:40
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:22:9-75
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:51:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:22:48-72
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:50:13-41
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:22:19-47
 activity#com.csu.census.HouseholdDetailActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:53:9-55:40
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:23:9-86
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:55:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:23:59-83
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:54:13-52
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:23:19-58
 activity#com.csu.census.AddHouseholdActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:57:9-60:58
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:24:9-126
 	android:windowSoftInputMode
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:60:13-55
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:24:81-123
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:59:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:24:56-80
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:58:13-49
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:24:19-55
 activity#com.csu.census.ProfileDetailActivity
-ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:62:9-64:40
+ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:25:9-84
 	android:exported
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:64:13-37
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:25:57-81
 	android:name
-		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:63:13-50
+		ADDED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml:25:19-56
 uses-sdk
 INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/r.ramakrishnan/Downloads/CSU_Census_Android_Updated/CSU Census Android/app/src/main/AndroidManifest.xml

@@ -1,95 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/background"
-    android:fillViewport="true"
-    android:scrollbars="none"
-    >
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:padding="24dp">
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_back"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:tint="@color/navy"
+        android:contentDescription="Back" />
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        >
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:src="@drawable/ic_back"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Back"
-            app:tint="@color/navy" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enter OTP"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="@color/navy"
-            android:layout_marginTop="16dp" />
-        <TextView
-            android:id="@+id/tvOtpHint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="We sent a 6-digit code to your email"
-            android:textColor="@color/muted"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:padding="20dp"
-            android:layout_marginTop="28dp"
-            android:elevation="2dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="One-time password"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="13sp" />
-            <EditText
-                android:id="@+id/etOtp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="6dp"
-                android:paddingHorizontal="14dp"
-                android:singleLine="true"
-                android:hint="123456"
-                android:inputType="number"
-                android:maxLength="6"
-                android:gravity="center"
-                android:letterSpacing="0.3"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_input"
-                android:textColor="@color/navy" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Demo OTP: 123456"
-                android:textColor="@color/muted"
-                android:textSize="12sp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center" />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnVerifyOtp"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="Verify OTP"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_primary_button"
-                app:backgroundTint="@null"
-                android:layout_marginTop="22dp"
-                app:cornerRadius="16dp" />
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+        android:text="Verify OTP"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="@color/navy"
+        android:layout_marginTop="16dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter the 4-digit code (demo: any 4 digits)"
+        android:textColor="@color/muted"
+        android:layout_marginTop="6dp" />
+    <EditText
+        android:id="@+id/etOtp"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="1234"
+        android:inputType="number"
+        android:paddingHorizontal="14dp"
+        android:background="@drawable/bg_input"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/navy" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVerify"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Verify"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="20dp"
+        app:cornerRadius="14dp" />
+</LinearLayout>

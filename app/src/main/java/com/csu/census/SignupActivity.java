@@ -19,14 +19,11 @@ import com.csu.census.ui.PasswordToggle;
 import java.util.UUID;
 
 public class SignupActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
-
         setContentView(R.layout.activity_signup);
 
         View root = findViewById(android.R.id.content);
@@ -36,61 +33,56 @@ public class SignupActivity extends AppCompatActivity {
             return insets;
         });
 
-        EditText nameInput = findViewById(R.id.etName);
-        EditText emailInput = findViewById(R.id.etEmail);
-        EditText phoneInput = findViewById(R.id.etPhone);
-        EditText passwordInput = findViewById(R.id.etNewPassword);
-        EditText confirmPasswordInput = findViewById(R.id.etConfirmPassword);
-
-        PasswordToggle.bind(passwordInput, findViewById(R.id.btnTogglePassword));
-        PasswordToggle.bind(confirmPasswordInput, findViewById(R.id.btnToggleConfirm));
+        EditText name = findViewById(R.id.etName);
+        EditText email = findViewById(R.id.etEmail);
+        EditText phone = findViewById(R.id.etPhone);
+        EditText pass = findViewById(R.id.etNewPassword);
+        EditText confirm = findViewById(R.id.etConfirmPassword);
+        PasswordToggle.bind(pass, findViewById(R.id.btnTogglePassword));
+        PasswordToggle.bind(confirm, findViewById(R.id.btnToggleConfirm));
 
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.tvBackLogin).setOnClickListener(v -> finish());
 
-        findViewById(R.id.btnCreate).setOnClickListener(view -> {
-            String name = nameInput.getText().toString().trim();
-            String email = emailInput.getText().toString().trim();
-            String phone = phoneInput.getText().toString().trim();
-            String password = passwordInput.getText().toString();
-            String confirmPassword = confirmPasswordInput.getText().toString();
+        findViewById(R.id.btnCreate).setOnClickListener(v -> {
+            String n = name.getText().toString().trim();
+            String e = email.getText().toString().trim();
+            String p = phone.getText().toString().trim();
+            String pw = pass.getText().toString();
+            String c = confirm.getText().toString();
 
-            if (name.isEmpty() || email.isEmpty() || phone.isEmpty()
-                    || password.isEmpty() || confirmPassword.isEmpty()) {
-                showToast("Please complete all fields");
+            if (n.isEmpty() || e.isEmpty() || p.isEmpty() || pw.isEmpty() || c.isEmpty()) {
+                toast("Please complete all fields");
                 return;
             }
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                showToast("Enter a valid email address");
+            if (!Patterns.EMAIL_ADDRESS.matcher(e).matches()) {
+                toast("Enter a valid email");
                 return;
             }
-            if (phone.length() < 10) {
-                showToast("Enter a valid phone number");
+            if (p.length() < 10) {
+                toast("Enter a valid phone number");
                 return;
             }
-            if (password.length() < 6) {
-                showToast("Password must be at least 6 characters");
+            if (pw.length() < 6) {
+                toast("Password must be at least 6 characters");
                 return;
             }
-            if (!password.equals(confirmPassword)) {
-                showToast("Passwords do not match");
+            if (!pw.equals(c)) {
+                toast("Passwords do not match");
                 return;
             }
 
-            // Auto-generate Collector ID
-            String collectorId = "CSU" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
-
-            boolean registered = AppStore.register(this, name, email, phone, collectorId, password);
-            if (registered) {
-                showToast("Account created. Your Collector ID is " + collectorId);
+            String id = "CSU" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
+            if (AppStore.register(this, n, e, p, id, pw)) {
+                toast("Account created. Collector ID: " + id);
                 finish();
             } else {
-                showToast("Something went wrong. Please try again.");
+                toast("Could not create account");
             }
         });
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    private void toast(String m) {
+        Toast.makeText(this, m, Toast.LENGTH_LONG).show();
     }
 }

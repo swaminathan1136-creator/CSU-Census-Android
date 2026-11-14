@@ -1,165 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:fillViewport="true"
-    android:scrollbars="none"
-    >
+    android:background="@color/background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            >
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:src="@drawable/ic_back"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Back"
-                app:tint="@color/navy" />
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add Household"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/navy"
-                android:layout_marginStart="8dp" />
-        </LinearLayout>
+        android:padding="24dp">
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/navy"
+            android:contentDescription="Back" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Record a new household for the current campaign"
-            android:textColor="@color/muted"
-            android:textSize="13sp"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="4dp" />
-        <LinearLayout
+            android:text="Add household"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="@color/navy"
+            android:layout_marginTop="12dp" />
+        <EditText
+            android:id="@+id/etName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:padding="20dp"
+            android:layout_height="52dp"
+            android:hint="Household name"
+            android:paddingHorizontal="14dp"
+            android:background="@drawable/bg_input"
             android:layout_marginTop="20dp"
-            android:elevation="2dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Household name *"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="13sp" />
-            <EditText
-                android:id="@+id/etHouseholdName"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:hint="e.g. Sharma Family"
-                android:paddingHorizontal="14dp"
-                android:background="@drawable/bg_input"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/navy"
-                android:textSize="15sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Address *"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="13sp"
-                android:layout_marginTop="14dp" />
-            <EditText
-                android:id="@+id/etAddress"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:hint="Street, area, city"
-                android:paddingHorizontal="14dp"
-                android:background="@drawable/bg_input"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/navy"
-                android:textSize="15sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Number of members *"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="13sp"
-                android:layout_marginTop="14dp" />
-            <EditText
-                android:id="@+id/etMembers"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:hint="e.g. 4"
-                android:inputType="number"
-                android:paddingHorizontal="14dp"
-                android:background="@drawable/bg_input"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/navy"
-                android:textSize="15sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone (optional)"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="13sp"
-                android:layout_marginTop="14dp" />
-            <EditText
-                android:id="@+id/etPhone"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:hint="+91 ..."
-                android:inputType="phone"
-                android:paddingHorizontal="14dp"
-                android:background="@drawable/bg_input"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/navy"
-                android:textSize="15sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Notes (optional)"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="13sp"
-                android:layout_marginTop="14dp" />
-            <EditText
-                android:id="@+id/etNotes"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:hint="Any observations..."
-                android:gravity="top"
-                android:padding="14dp"
-                android:background="@drawable/bg_input"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/navy"
-                android:textSize="15sp"
-                android:inputType="textMultiLine" />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSaveHousehold"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="Save as Draft"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:background="@drawable/bg_primary_button"
-                app:backgroundTint="@null"
-                android:layout_marginTop="22dp"
-                app:cornerRadius="16dp" />
-        </LinearLayout>
+            android:textColor="@color/navy" />
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Address"
+            android:paddingHorizontal="14dp"
+            android:background="@drawable/bg_input"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/navy" />
+        <EditText
+            android:id="@+id/etMembers"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Number of members"
+            android:inputType="number"
+            android:paddingHorizontal="14dp"
+            android:background="@drawable/bg_input"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/navy" />
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:hint="Phone (optional)"
+            android:inputType="phone"
+            android:paddingHorizontal="14dp"
+            android:background="@drawable/bg_input"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/navy" />
+        <EditText
+            android:id="@+id/etNotes"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Notes (optional)"
+            android:gravity="top"
+            android:padding="14dp"
+            android:background="@drawable/bg_input"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/navy" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Save household"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/blue"
+            android:layout_marginTop="20dp"
+            app:cornerRadius="14dp" />
     </LinearLayout>
 </ScrollView>

@@ -52,5 +52,4 @@
             android:textSize="15sp"
             android:lineSpacingExtra="4dp" />
     </LinearLayout>
-
 </LinearLayout>

@@ -1,197 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/background"
-    android:scrollbars="none">
-
+    android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="28dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="32dp"
+        android:padding="24dp"
         android:gravity="center_horizontal">
-
-        <FrameLayout
-            android:layout_width="116dp"
-            android:layout_height="116dp"
-            android:background="@drawable/bg_logo_badge"
-            android:elevation="6dp">
-
-            <ImageView
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:layout_gravity="center"
-                android:src="@drawable/csu_logo"
-                android:contentDescription="CSU logo"
-                android:scaleType="fitCenter" />
-        </FrameLayout>
-
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/csu_logo"
+            android:contentDescription="@string/app_name" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="COLLECTOR PORTAL"
-            android:textSize="11sp"
-            android:textStyle="bold"
             android:textColor="@color/blue"
-            android:letterSpacing="0.24"
-            android:layout_marginTop="18dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome Back!"
-            android:textSize="28sp"
+            android:textSize="12sp"
             android:textStyle="bold"
-            android:textColor="@color/navy"
-            android:layout_marginTop="12dp" />
-
+            android:letterSpacing="0.08" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in to continue your census work."
+            android:layout_marginTop="20dp"
+            android:text="Welcome Back!"
+            android:textColor="@color/navy"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Sign in to continue your field work"
             android:textColor="@color/muted"
-            android:textSize="14sp"
-            android:layout_marginTop="6dp" />
-
+            android:textSize="14sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/bg_card"
-            android:padding="24dp"
-            android:layout_marginTop="32dp"
-            android:elevation="4dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Collector ID"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="14sp" />
-
-            <EditText
-                android:id="@+id/etCollectorId"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="10dp"
-                android:paddingHorizontal="16dp"
-                android:singleLine="true"
-                android:hint="Enter your Collector ID"
-                android:inputType="text"
-                android:background="@drawable/bg_input_selector"
-                android:textColor="@color/navy"
-                android:textColorHint="@color/muted"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textColor="@color/navy"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:layout_marginTop="20dp" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/etPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="48dp"
-                    android:singleLine="true"
-                    android:hint="Enter password"
-                    android:inputType="textPassword"
-                    android:background="@drawable/bg_input_selector"
-                    android:textColor="@color/navy"
-                    android:textColorHint="@color/muted"
-                    android:textSize="15sp" />
-
-                <ImageButton
-                    android:id="@+id/btnTogglePassword"
-                    android:layout_width="48dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end|center_vertical"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="Show password"
-                    android:src="@drawable/ic_eye_off"
-                    android:scaleType="centerInside"
-                    android:padding="12dp" />
+            android:padding="20dp"
+            android:layout_marginTop="28dp"
+            android:elevation="2dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Collector ID" android:textColor="@color/navy" android:textStyle="bold" android:textSize="13sp" />
+            <EditText android:id="@+id/etCollectorId" android:layout_width="match_parent" android:layout_height="52dp"
+                android:hint="e.g. 1 or CSU001" android:paddingHorizontal="14dp" android:background="@drawable/bg_input"
+                android:layout_marginTop="6dp" android:textColor="@color/navy" android:textSize="15sp" android:inputType="text" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Password" android:textColor="@color/navy" android:textStyle="bold" android:textSize="13sp" android:layout_marginTop="14dp" />
+            <FrameLayout android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="6dp">
+                <EditText android:id="@+id/etPassword" android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:hint="Your password" android:inputType="textPassword" android:paddingHorizontal="14dp"
+                    android:paddingEnd="48dp" android:background="@drawable/bg_input" android:textColor="@color/navy" android:textSize="15sp" />
+                <ImageButton android:id="@+id/btnTogglePassword" android:layout_width="44dp" android:layout_height="44dp"
+                    android:layout_gravity="end|center_vertical" android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_eye_off" android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Toggle password" app:tint="@color/muted" />
             </FrameLayout>
-
-            <TextView
-                android:id="@+id/tvForgot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Forgot password?"
-                android:textColor="@color/blue"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:layout_gravity="end"
-                android:paddingTop="14dp"
-                android:paddingBottom="6dp"
-                android:clickable="true"
-                android:focusable="true" />
-
+            <TextView android:id="@+id/tvForgot" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="end" android:layout_marginTop="10dp" android:text="Forgot Password?"
+                android:textColor="@color/blue" android:textStyle="bold" android:padding="4dp" />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="16dp"
                 android:text="Sign In"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/white"
-                android:background="@drawable/bg_primary_button"
-                app:backgroundTint="@null"
-                android:layout_marginTop="10dp"
-                app:cornerRadius="16dp" />
+                android:backgroundTint="@color/blue"
+                app:cornerRadius="14dp" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New to CSU Census? "
-                android:textColor="@color/muted"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tvCreateAccount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create an account"
-                android:textColor="@color/blue"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:padding="6dp"
-                android:clickable="true"
-                android:focusable="true" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Demo: 1  /  1"
-            android:textSize="12sp"
-            android:textColor="@color/muted"
-            android:layout_marginTop="20dp" />
+        <TextView android:id="@+id/tvCreateAccount" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" android:padding="12dp"
+            android:text="Create New Account" android:textColor="@color/blue" android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>
