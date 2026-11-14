@@ -34,6 +34,7 @@ public final class AppStore {
             JSONObject demoAccount = new JSONObject();
             demoAccount.put("name", "Demo Collector");
             demoAccount.put("email", "demo@csu.org");
+            demoAccount.put("phone", "+91 90000 00001");
             demoAccount.put("password", "1");
             store.edit()
                     .putString("account_1", demoAccount.toString())
@@ -103,6 +104,7 @@ public final class AppStore {
             Context context,
             String name,
             String email,
+            String phone,
             String collectorId,
             String password
     ) {
@@ -117,6 +119,7 @@ public final class AppStore {
             JSONObject account = new JSONObject();
             account.put("name", name);
             account.put("email", email);
+            account.put("phone", phone != null ? phone : "");
             account.put("password", password);
 
             store.edit()

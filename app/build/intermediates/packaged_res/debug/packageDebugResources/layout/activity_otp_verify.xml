@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:fillViewport="true"
-    android:scrollbars="none">
-
+    android:scrollbars="none"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
-
+        android:padding="24dp"
+        >
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="44dp"
@@ -22,7 +22,6 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
             app:tint="@color/navy" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +30,6 @@
             android:textStyle="bold"
             android:textColor="@color/navy"
             android:layout_marginTop="16dp" />
-
         <TextView
             android:id="@+id/tvOtpHint"
             android:layout_width="wrap_content"
@@ -40,7 +38,6 @@
             android:textColor="@color/muted"
             android:textSize="14sp"
             android:layout_marginTop="8dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,8 +45,8 @@
             android:background="@drawable/bg_card"
             android:padding="20dp"
             android:layout_marginTop="28dp"
-            android:elevation="2dp">
-
+            android:elevation="2dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +54,6 @@
                 android:textColor="@color/navy"
                 android:textStyle="bold"
                 android:textSize="13sp" />
-
             <EditText
                 android:id="@+id/etOtp"
                 android:layout_width="match_parent"
@@ -74,7 +70,6 @@
                 android:textStyle="bold"
                 android:background="@drawable/bg_input"
                 android:textColor="@color/navy" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,19 +78,18 @@
                 android:textSize="12sp"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnVerifyOtp"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="56dp"
                 android:text="Verify OTP"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:backgroundTint="@color/blue"
+                android:background="@drawable/bg_primary_button"
+                app:backgroundTint="@null"
                 android:layout_marginTop="22dp"
-                app:cornerRadius="14dp" />
+                app:cornerRadius="16dp" />
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

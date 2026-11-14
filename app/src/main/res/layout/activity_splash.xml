@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navy">
+    android:background="@drawable/bg_splash">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,23 +12,31 @@
         android:gravity="center"
         android:padding="32dp">
 
-        <ImageView
-            android:id="@+id/splashLogo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/csu_logo"
-            android:contentDescription="CSU Logo"
-            android:scaleType="fitCenter" />
+        <FrameLayout
+            android:layout_width="132dp"
+            android:layout_height="132dp"
+            android:background="@drawable/bg_logo_badge"
+            android:elevation="8dp">
+
+            <ImageView
+                android:id="@+id/splashLogo"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center"
+                android:src="@drawable/csu_logo"
+                android:contentDescription="CSU Logo"
+                android:scaleType="fitCenter" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/splashTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CSU Census"
-            android:textSize="28sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="26dp" />
 
         <TextView
             android:id="@+id/splashSubtitle"
@@ -36,15 +44,15 @@
             android:layout_height="wrap_content"
             android:text="Collector Portal"
             android:textSize="14sp"
-            android:textColor="#A8C4E0"
-            android:letterSpacing="0.15"
-            android:layout_marginTop="6dp" />
+            android:textColor="@color/splash_fade"
+            android:letterSpacing="0.18"
+            android:layout_marginTop="8dp" />
 
         <ProgressBar
             android:id="@+id/splashProgress"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="52dp"
             android:indeterminateTint="@color/white" />
 
     </LinearLayout>

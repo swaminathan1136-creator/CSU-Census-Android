@@ -6,20 +6,20 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:fillViewport="true"
-    android:scrollbars="none">
-
+    android:scrollbars="none"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
-
+        android:padding="20dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
-
+            android:gravity="center_vertical"
+            >
             <ImageButton
                 android:id="@+id/btnBack"
                 android:layout_width="44dp"
@@ -28,7 +28,6 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Back"
                 app:tint="@color/navy" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -39,7 +38,6 @@
                 android:textColor="@color/navy"
                 android:layout_marginStart="8dp" />
         </LinearLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +46,6 @@
             android:textSize="13sp"
             android:layout_marginTop="6dp"
             android:layout_marginStart="4dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,8 +53,8 @@
             android:background="@drawable/bg_card"
             android:padding="20dp"
             android:layout_marginTop="20dp"
-            android:elevation="2dp">
-
+            android:elevation="2dp"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,7 +62,6 @@
                 android:textColor="@color/navy"
                 android:textStyle="bold"
                 android:textSize="13sp" />
-
             <EditText
                 android:id="@+id/etHouseholdName"
                 android:layout_width="match_parent"
@@ -76,7 +72,6 @@
                 android:layout_marginTop="6dp"
                 android:textColor="@color/navy"
                 android:textSize="15sp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +80,6 @@
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:layout_marginTop="14dp" />
-
             <EditText
                 android:id="@+id/etAddress"
                 android:layout_width="match_parent"
@@ -96,7 +90,6 @@
                 android:layout_marginTop="6dp"
                 android:textColor="@color/navy"
                 android:textSize="15sp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,7 +98,6 @@
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:layout_marginTop="14dp" />
-
             <EditText
                 android:id="@+id/etMembers"
                 android:layout_width="match_parent"
@@ -117,7 +109,6 @@
                 android:layout_marginTop="6dp"
                 android:textColor="@color/navy"
                 android:textSize="15sp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,7 +117,6 @@
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:layout_marginTop="14dp" />
-
             <EditText
                 android:id="@+id/etPhone"
                 android:layout_width="match_parent"
@@ -138,7 +128,6 @@
                 android:layout_marginTop="6dp"
                 android:textColor="@color/navy"
                 android:textSize="15sp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,7 +136,6 @@
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:layout_marginTop="14dp" />
-
             <EditText
                 android:id="@+id/etNotes"
                 android:layout_width="match_parent"
@@ -160,19 +148,18 @@
                 android:textColor="@color/navy"
                 android:textSize="15sp"
                 android:inputType="textMultiLine" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSaveHousehold"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="56dp"
                 android:text="Save as Draft"
                 android:textAllCaps="false"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:backgroundTint="@color/blue"
+                android:background="@drawable/bg_primary_button"
+                app:backgroundTint="@null"
                 android:layout_marginTop="22dp"
-                app:cornerRadius="14dp" />
+                app:cornerRadius="16dp" />
         </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

@@ -38,6 +38,7 @@ public class SignupActivity extends AppCompatActivity {
 
         EditText nameInput = findViewById(R.id.etName);
         EditText emailInput = findViewById(R.id.etEmail);
+        EditText phoneInput = findViewById(R.id.etPhone);
         EditText passwordInput = findViewById(R.id.etNewPassword);
         EditText confirmPasswordInput = findViewById(R.id.etConfirmPassword);
 
@@ -50,15 +51,21 @@ public class SignupActivity extends AppCompatActivity {
         findViewById(R.id.btnCreate).setOnClickListener(view -> {
             String name = nameInput.getText().toString().trim();
             String email = emailInput.getText().toString().trim();
+            String phone = phoneInput.getText().toString().trim();
             String password = passwordInput.getText().toString();
             String confirmPassword = confirmPasswordInput.getText().toString();
 
-            if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            if (name.isEmpty() || email.isEmpty() || phone.isEmpty()
+                    || password.isEmpty() || confirmPassword.isEmpty()) {
                 showToast("Please complete all fields");
                 return;
             }
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 showToast("Enter a valid email address");
+                return;
+            }
+            if (phone.length() < 10) {
+                showToast("Enter a valid phone number");
                 return;
             }
             if (password.length() < 6) {
@@ -73,7 +80,7 @@ public class SignupActivity extends AppCompatActivity {
             // Auto-generate Collector ID
             String collectorId = "CSU" + UUID.randomUUID().toString().substring(0, 5).toUpperCase();
 
-            boolean registered = AppStore.register(this, name, email, collectorId, password);
+            boolean registered = AppStore.register(this, name, email, phone, collectorId, password);
             if (registered) {
                 showToast("Account created. Your Collector ID is " + collectorId);
                 finish();

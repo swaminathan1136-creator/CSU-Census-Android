@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigation;
     private int currentTab = R.id.nav_home;
+    private boolean isProgrammaticSelect = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +66,19 @@ public class MainActivity extends AppCompatActivity {
         };
         int[] colors = new int[] {
                 Color.parseColor("#255DB0"),
-                Color.parseColor("#8A9BB0")
+                Color.parseColor("#94A3B8")
         };
         ColorStateList tint = new ColorStateList(states, colors);
         bottomNavigation.setItemIconTintList(tint);
         bottomNavigation.setItemTextColor(tint);
 
         bottomNavigation.setOnItemSelectedListener(item -> {
-            openTab(item.getItemId());
+            if (isProgrammaticSelect) {
+                isProgrammaticSelect = false;
+                switchFragment(item.getItemId());
+                return true;
+            }
+            switchFragment(item.getItemId());
             return true;
         });
 
@@ -80,11 +86,25 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigation.setSelectedItemId(R.id.nav_home);
         } else {
             currentTab = savedInstanceState.getInt("currentTab", R.id.nav_home);
-            openTab(currentTab);
+            isProgrammaticSelect = true;
+            bottomNavigation.setSelectedItemId(currentTab);
         }
     }
 
+    /**
+     * Public entry point used by quick actions / other fragments.
+     * Switches the fragment AND updates the bottom nav selection.
+     */
     public void openTab(int menuItemId) {
+        if (menuItemId == currentTab) {
+            switchFragment(menuItemId);
+            return;
+        }
+        isProgrammaticSelect = true;
+        bottomNavigation.setSelectedItemId(menuItemId);
+    }
+
+    private void switchFragment(int menuItemId) {
         Fragment selectedFragment;
         String screenTitle;
 

@@ -6,23 +6,23 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/background"
-    android:scrollbars="none">
-
+    android:scrollbars="none"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
         android:paddingTop="12dp"
-        android:paddingBottom="20dp">
-
+        android:paddingBottom="20dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingTop="5dp">
-
+            android:paddingTop="5dp"
+            >
             <TextView
                 android:id="@+id/tvAvatar"
                 android:layout_width="62dp"
@@ -33,14 +33,13 @@
                 android:textStyle="bold"
                 android:textColor="@color/blue"
                 android:background="@drawable/bg_avatar" />
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginStart="13dp">
-
+                android:layout_marginStart="13dp"
+                >
                 <TextView
                     android:id="@+id/tvGreeting"
                     android:layout_width="wrap_content"
@@ -48,7 +47,6 @@
                     android:text="Welcome back,"
                     android:textColor="@color/muted"
                     android:textSize="13sp" />
-
                 <TextView
                     android:id="@+id/tvCollectorName"
                     android:layout_width="wrap_content"
@@ -60,7 +58,6 @@
                     android:layout_marginTop="3dp"
                     android:maxLines="1"
                     android:ellipsize="end" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -70,7 +67,6 @@
                     android:layout_marginTop="3dp" />
             </LinearLayout>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,20 +74,20 @@
             android:background="@drawable/bg_progress_card"
             android:padding="20dp"
             android:layout_marginTop="22dp"
-            android:elevation="6dp">
-
+            android:elevation="6dp"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                >
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
-
+                    android:orientation="vertical"
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -100,7 +96,6 @@
                         android:textSize="10sp"
                         android:textStyle="bold"
                         android:letterSpacing="0.14" />
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -110,23 +105,21 @@
                         android:textStyle="bold"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
-
                 <TextView
                     android:layout_width="49dp"
                     android:layout_height="49dp"
                     android:gravity="center"
                     android:text="📊"
                     android:textSize="22sp"
-                    android:background="#24FFFFFF" />
+                    android:background="@drawable/bg_glass_badge" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:layout_marginTop="16dp">
-
+                android:layout_marginTop="16dp"
+                >
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -134,7 +127,6 @@
                     android:text="Overall Collection Progress"
                     android:textColor="#E0FFFFFF"
                     android:textSize="12sp" />
-
                 <TextView
                     android:id="@+id/tvCampaignPercent"
                     android:layout_width="wrap_content"
@@ -144,7 +136,6 @@
                     android:textSize="23sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -155,21 +146,19 @@
                 android:progressTint="@color/white"
                 android:progressBackgroundTint="#40FFFFFF"
                 android:layout_marginTop="12dp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp">
-
+                android:layout_marginTop="12dp"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="✓"
                     android:textColor="#7AF0AD"
                     android:textSize="14sp" />
-
                 <TextView
                     android:id="@+id/tvProgressCount"
                     android:layout_width="wrap_content"
@@ -180,20 +169,19 @@
                     android:layout_marginStart="6dp" />
             </LinearLayout>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginTop="24dp">
-
+            android:layout_marginTop="24dp"
+            >
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -201,7 +189,6 @@
                     android:textColor="@color/navy"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -211,30 +198,28 @@
                     android:layout_marginTop="2dp" />
             </LinearLayout>
         </LinearLayout>
-
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
             android:rowCount="2"
             android:useDefaultMargins="true"
-            android:layout_marginTop="12dp">
-
+            android:layout_marginTop="12dp"
+            >
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:padding="15dp"
-                android:background="@drawable/bg_stat_card">
-
+                android:background="@drawable/bg_stat_card"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Households"
                     android:textColor="@color/muted"
                     android:textSize="13sp" />
-
                 <TextView
                     android:id="@+id/tvHouseholds"
                     android:layout_width="wrap_content"
@@ -244,7 +229,6 @@
                     android:textStyle="bold"
                     android:textColor="@color/navy"
                     android:layout_marginTop="8dp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -253,22 +237,20 @@
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:padding="15dp"
-                android:background="@color/soft_green">
-
+                android:background="@drawable/bg_stat_green"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Submitted"
                     android:textColor="@color/green"
                     android:textSize="13sp" />
-
                 <TextView
                     android:id="@+id/tvSubmitted"
                     android:layout_width="wrap_content"
@@ -278,7 +260,6 @@
                     android:textStyle="bold"
                     android:textColor="@color/navy"
                     android:layout_marginTop="8dp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -287,22 +268,20 @@
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:padding="15dp"
-                android:background="@color/soft_blue">
-
+                android:background="@drawable/bg_stat_blue"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="In Review"
                     android:textColor="@color/blue"
                     android:textSize="13sp" />
-
                 <TextView
                     android:id="@+id/tvReview"
                     android:layout_width="wrap_content"
@@ -312,7 +291,6 @@
                     android:textStyle="bold"
                     android:textColor="@color/navy"
                     android:layout_marginTop="8dp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -321,22 +299,20 @@
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="110dp"
                 android:layout_columnWeight="1"
                 android:orientation="vertical"
                 android:padding="15dp"
-                android:background="@color/soft_pink">
-
+                android:background="@drawable/bg_stat_pink"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Returned"
                     android:textColor="@color/pink"
                     android:textSize="13sp" />
-
                 <TextView
                     android:id="@+id/tvReturned"
                     android:layout_width="wrap_content"
@@ -346,7 +322,6 @@
                     android:textStyle="bold"
                     android:textColor="@color/navy"
                     android:layout_marginTop="8dp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -356,7 +331,6 @@
                     android:layout_marginTop="2dp" />
             </LinearLayout>
         </GridLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -365,15 +339,14 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp" />
-
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
             android:rowCount="2"
             android:useDefaultMargins="true"
-            android:layout_marginTop="10dp">
-
+            android:layout_marginTop="10dp"
+            >
             <LinearLayout
                 android:id="@+id/btnAddHousehold"
                 android:layout_width="0dp"
@@ -384,14 +357,13 @@
                 android:background="@drawable/bg_qa_green"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
+                android:foreground="?attr/selectableItemBackground"
+                >
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/ic_qa_add"
                     android:contentDescription="Add" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -401,7 +373,6 @@
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/btnViewHouseholds"
                 android:layout_width="0dp"
@@ -412,14 +383,13 @@
                 android:background="@drawable/bg_qa_blue"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
+                android:foreground="?attr/selectableItemBackground"
+                >
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/ic_qa_home"
                     android:contentDescription="Households" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -429,7 +399,6 @@
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/btnSubmissions"
                 android:layout_width="0dp"
@@ -440,14 +409,13 @@
                 android:background="@drawable/bg_qa_pink"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
+                android:foreground="?attr/selectableItemBackground"
+                >
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/ic_qa_records"
                     android:contentDescription="Submissions" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -457,7 +425,6 @@
                     android:textStyle="bold"
                     android:layout_marginTop="8dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/btnLeaderboard"
                 android:layout_width="0dp"
@@ -468,14 +435,13 @@
                 android:background="@drawable/bg_qa_white"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
-
+                android:foreground="?attr/selectableItemBackground"
+                >
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:src="@drawable/ic_qa_leaderboard"
                     android:contentDescription="Leaderboard" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -486,7 +452,6 @@
                     android:layout_marginTop="8dp" />
             </LinearLayout>
         </GridLayout>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -495,6 +460,5 @@
             android:textSize="12sp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="16dp" />
-
     </LinearLayout>
 </ScrollView>
